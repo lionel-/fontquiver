@@ -1,0 +1,13 @@
+Package: fontquiver
+Title: Set of libre fonts
+Version: 0.0.0.9000
+Authors@R: person("Lionel", "Henry", , "lionel.hry@gmail.com", c("cre", "aut"))
+Description: Provides a set of fonts with a permissive licence. This
+    is useful when you would like to avoid system fonts to make sure
+    your outputs are reproducible.
+Depends:
+    R (>= 3.3.0)
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 5.0.1
