@@ -5,22 +5,29 @@
 #' (\code{roman}, \code{bold}, \code{oblique}, \code{bold-oblique}),
 #' \code{serif} (\code{roman}, \code{bold}).
 #'
-#' @param face Typeface of the font, e.g. \code{"sans"} or \code{"serif"}.
+#' @param variant Variant of the font, e.g. \code{"sans"} or \code{"serif"}.
 #' @param style Style of the font, e.g. \code{"roman"} or \code{"bold"}.
 #' @param ext One of \code{"ttf"}, \code{"svg"} or \code{"woff"}.
 #' @return Path to the requested font. The version number of the font
 #'   is given in the \code{version} attribute.
 #' @references \url{https://www.gnome.org/fonts/}
 #' @export
-font_bitstream_vera <- function(face = "sans", style = "roman",
+font_bitstream_vera <- function(variant = "sans", style = "roman",
                                 ext = "ttf") {
-  check_font_family(face, style, bitstream_vera_files)
+  check_font_family(variant, style, bitstream_vera_files)
   check_font_ext(ext)
 
-  file <- bitstream_vera_files[[face]][[style]]
-  font <- font_file("bitstream-vera", file, ext)
+  base <- bitstream_vera_files[[variant]][[style]]
+  file <- font_file("bitstream-vera", base, ext)
   version <- font_version("bitstream-vera")
-  structure(font, version = version)
+
+  structure(class = "font", list(
+    file = file,
+    name = "Bitstream Vera",
+    variant = variant,
+    style = style,
+    version = version
+  ))
 }
 
 bitstream_vera_files <- list(

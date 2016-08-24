@@ -4,10 +4,10 @@
 \alias{font_bitstream_vera}
 \title{Bitstream Vera fonts}
 \usage{
-font_bitstream_vera(face = "sans", style = "roman", ext = "ttf")
+font_bitstream_vera(variant = "sans", style = "roman", ext = "ttf")
 }
 \arguments{
-\item{face}{Typeface of the font, e.g. \code{"sans"} or \code{"serif"}.}
+\item{variant}{Variant of the font, e.g. \code{"sans"} or \code{"serif"}.}
 
 \item{style}{Style of the font, e.g. \code{"roman"} or \code{"bold"}.}
 
