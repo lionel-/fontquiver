@@ -7,7 +7,8 @@
 #'
 #' @param variant Variant of the font, e.g. \code{"sans"} or \code{"serif"}.
 #' @param style Style of the font, e.g. \code{"roman"} or \code{"bold"}.
-#' @param ext One of \code{"ttf"}, \code{"svg"} or \code{"woff"}.
+#' @param ext One of \code{"ttf"}, \code{"svg"}, \code{"woff"} or
+#'   \code{"eot"}.
 #' @return Path to the requested font. The version number of the font
 #'   is given in the \code{version} attribute.
 #' @references \url{https://www.gnome.org/fonts/}

@@ -17,8 +17,8 @@ check_font_family <- function(face, style, files) {
 }
 
 check_font_ext <- function(ext) {
-  if (!ext %in% c("ttf", "svg", "woff")) {
-    stop("`ext` should be one of: 'ttf', 'svg', 'woff'",
+  if (!ext %in% c("ttf", "svg", "woff", "eot")) {
+    stop("`ext` should be one of: 'ttf', 'svg', 'woff', 'eot'",
       call. = FALSE)
   }
 }
