@@ -1,17 +1,8 @@
 
-all: check clean bitstream-vera
+all: clean bitstream-vera
 
 
-WEBIFY_CMD := $(shell command -v webify 2> /dev/null)
-
-check:
-ifndef WEBIFY_CMD
-	$(error "Please install webify, see https://github.com/ananthakumaran/webify")
-endif
-	@echo Proceeding
-
-
-BITSTREAM_VERA_VERSION := $(shell cat bitstream-vera-VERSION)
+BITSTREAM_VERA_VERSION = `cat bitstream-vera-VERSION`
 BITSTREAM_VERA_FILE_BASE = ttf-bitstream-vera-$(BITSTREAM_VERA_VERSION)
 BITSTREAM_VERA_URL_BASE = http://ftp.gnome.org/pub/GNOME/sources/ttf-bitstream-vera/
 BITSTREAM_VERA_URL = $(BITSTREAM_VERA_URL_BASE)$(BITSTREAM_VERA_VERSION)/$(BITSTREAM_VERA_FILE_BASE).tar.bz2
@@ -27,6 +18,7 @@ bitstream-vera:
 
 clean:
 	find . ! -name . ! -name .. ! \
+		-name README.md ! \
 		-name Makefile ! \
 		-name bitstream-vera-VERSION | \
 		xargs rm -rf
