@@ -1,10 +1,12 @@
 
-* Requirements
+# Including a new font
+
+## Requirements
 
 `webify` (https://github.com/ananthakumaran/webify)
 
 
-* Procedure to install a new font `foo`
+## Procedure to install a new font `foo`
 
 Create a `foo-VERSION` file in `inst/fonts/` containing the version of
 the font to be released. This is used in the Makefile and in R tools
