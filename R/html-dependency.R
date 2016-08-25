@@ -32,7 +32,10 @@ htmlFontDependency <- function(font_getter = font_bitstream_vera,
   if (!dir.exists(css_dir)) {
     dir.create(css_dir)
   }
-  css_file <- css_font_family(id, base_file, css_dir)
+
+  css <- css_font_face(id, base_file)
+  css_file <- tempfile(id, css_dir, fileext = ".css")
+  writeLines(css, css_file, useBytes = TRUE)
 
   base_path <- str_trim_ext(font$file)
   lapply(c("ttf", "svg", "woff", "eot"), function(ext) {
@@ -49,19 +52,19 @@ htmlFontDependency <- function(font_getter = font_bitstream_vera,
   )
 }
 
-css_font_family <- function(id, file, css_dir) {
-  lines <- gsub("%s", file, c(
+# https://css-tricks.com/snippets/css/using-font-face/
+css_font_face <- function(id, file) {
+  gsub("%s", file, c(
     "@fontface {",
     sprintf("  font-family: '%s';", id),
-    "  src: url('%s.eot');                                    /* IE9 Compat Modes */",
-    "  src: url('%s.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */",
-    "  url('%s.woff') format('woff'),                         /* Modern Browsers */",
-    "  url('%s.ttf')  format('truetype'),                     /* Safari, Android, iOS */",
-    "  url('%s.svg#svgFontName') format('svg');               /* Legacy iOS */",
+    "  src: url('%s.eot');                                 /* IE9 Compat Modes */",
+    "  src: ",
+    "    url('%s.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */",
+    "    url('%s.woff') format('woff'),                    /* Modern Browsers */",
+    "    url('%s.ttf')  format('truetype'),                /* Safari, Android, iOS */",
+    "    url('%s.svg#svgFontName') format('svg')           /* Legacy iOS */",
+    " ;",
     "}"
   ))
 
-  css_file <- tempfile(id, css_dir, fileext = ".css")
-  writeLines(lines, css_file, useBytes = TRUE)
-  css_file
 }
