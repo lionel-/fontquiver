@@ -16,17 +16,25 @@ devtools::install_github("lionel-/fontquiver")
 
 ## Usage
 
+### Get installed font
+
 Get the path to an installed font `foo` with `font_foo()` helper:
 
 ```{r}
-font_bitstream_vera()
-font_bitstream_vera(face = "serif", style = "bold")
-font_bitstream_vera(face = "sans-mono", ext = "woff")
+font_bitstream_vera()$file
+font_bitstream_vera(variant = "serif", style = "bold")$file
+font_bitstream_vera(variant = "sans-mono", ext = "woff")$file
 ```
 
-The version number of the font is in the `version` attribute:
+The version number of the font is in the `version` field:
 
 ```{r}
-font_path <- font_bitstream_vera()
-attr(font_path, "version")
+font_bitstream_vera()$version
+```
+
+### Add web dependency on an installed font
+
+```{r}
+install.packages("htmltools")
+html_dep <- htmlFontDependency(style = "bold")
 ```

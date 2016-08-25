@@ -9,8 +9,10 @@ Description: Provides a set of fonts with a permissive licence. This
     your outputs are reproducible.
 Depends:
     R (>= 3.3.0)
+Suggests:
+    testthat,
+    htmltools
 License: GPL-3 + file LICENCE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 5.0.1
-Suggests: testthat

@@ -11,7 +11,8 @@ font_bitstream_vera(variant = "sans", style = "roman", ext = "ttf")
 
 \item{style}{Style of the font, e.g. \code{"roman"} or \code{"bold"}.}
 
-\item{ext}{One of \code{"ttf"}, \code{"svg"} or \code{"woff"}.}
+\item{ext}{One of \code{"ttf"}, \code{"svg"}, \code{"woff"} or
+\code{"eot"}.}
 }
 \value{
 Path to the requested font. The version number of the font

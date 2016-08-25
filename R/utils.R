@@ -4,7 +4,7 @@ check_font_family <- function(face, style, files) {
   if (!face %in% faces) {
     stop(call. = FALSE,
       "Available faces:\n",
-      paste(names(faces), collapse = ", ")
+      paste(faces, collapse = ", ")
     )
   }
 
@@ -34,4 +34,16 @@ font_version <- function(font) {
   file <- system.file("fonts", paste0(font, "-VERSION"),
     package = "fontquiver")
   readChar(file, file.info(file)$size - 1)
+}
+
+`%||%` <- function(x, y) {
+  if (is.null(x)) y else x
+}
+
+str_standardise <- function(name) {
+  gsub(" ", "-", tolower(name))
+}
+
+str_trim_ext <- function(path) {
+  sub("\\..+$", "", path)
 }
