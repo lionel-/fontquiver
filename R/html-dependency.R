@@ -52,10 +52,10 @@ htmlFontDependency <- function(font_getter = font_bitstream_vera,
   )
 }
 
-# https://css-tricks.com/snippets/css/using-font-face/
+# https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face
 css_font_face <- function(id, file) {
   gsub("%s", file, c(
-    "@fontface {",
+    "@font-face {",
     sprintf("  font-family: '%s';", id),
     "  src: url('%s.eot');                                 /* IE9 Compat Modes */",
     "  src: ",
