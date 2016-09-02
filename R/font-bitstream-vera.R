@@ -7,8 +7,7 @@
 #'
 #' @param variant Variant of the font, e.g. \code{"sans"} or \code{"serif"}.
 #' @param style Style of the font, e.g. \code{"roman"} or \code{"bold"}.
-#' @param ext One of \code{"ttf"}, \code{"svg"}, \code{"woff"} or
-#'   \code{"eot"}.
+#' @param ext Either \code{"ttf"} or \code{"woff"}.
 #' @return The path to the requested font is provided in the
 #'   \code{file} field. The version number of the font is given in the
 #'   \code{version} field.

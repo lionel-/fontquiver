@@ -12,7 +12,7 @@ bitstream-vera:
 	tar xjvf $(BITSTREAM_VERA_FILE) -C bitstream-vera-fonts --strip-components=1
 	rm $(BITSTREAM_VERA_FILE)
 	cp bitstream-vera-fonts/COPYRIGHT.TXT bitstream-vera-LICENCE
-	webify bitstream-vera-fonts/*.ttf
+	webify --no-eot --no-svg bitstream-vera-fonts/*.ttf
 
 
 DEJAVU_VERSION= `cat dejavu-VERSION`
@@ -25,7 +25,7 @@ dejavu:
 	tar xjvf $(DEJAVU_FILE) -C dejavu-fonts --strip-components=1
 	rm $(DEJAVU_FILE)
 	cp dejavu-fonts/LICENSE dejavu-LICENCE
-	webify dejavu-fonts/ttf/*.ttf
+	webify --no-eot --no-svg dejavu-fonts/ttf/*.ttf
 
 clean:
 	find . \
