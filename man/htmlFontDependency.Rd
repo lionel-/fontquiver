@@ -27,7 +27,7 @@ dep$name
 
 # Use that name in your dependent css or html files. For example:
 # body {
-#  font-family: fontquiver-bitstream-vera-sans-roman, sans-serif !important;
+#  font-family: fontquiver-bitstream-vera-sans-roman, sans-serif;
 # }
 }
 
