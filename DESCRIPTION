@@ -1,10 +1,10 @@
 Package: fontquiver
-Title: Set of libre fonts
-Version: 0.0.0.9000
+Title: Set of Fonts
+Version: 0.1
 Authors@R: c(
     person("Lionel", "Henry", , "lionel.hry@gmail.com", c("cre", "aut")),
     person("Bitstream", role = "cph"))
-Description: Provides a set of fonts with a permissive licence. This
+Description: Provides a set of fonts with permissive licences. This
     is useful when you would like to avoid system fonts to make sure
     your outputs are reproducible.
 Depends:
