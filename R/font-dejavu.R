@@ -16,7 +16,7 @@
 #' @references \url{http://dejavu-fonts.org}
 #' @export
 font_dejavu <- function(variant = "sans", style = "book", ext = "ttf") {
-  if (!requireNamespace("fontHeavy", quietly = TRUE)) {
+  if (system.file("fonts", package = "fontHeavy") == "") {
     stop(call. = FALSE,
       "fontHeavy must be installed. Please run:\n",
       "  install.packages('devtools')\n",

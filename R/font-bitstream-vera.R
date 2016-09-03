@@ -15,7 +15,7 @@
 #' @export
 font_bitstream_vera <- function(variant = "sans", style = "roman",
                                 ext = "ttf") {
-  if (!requireNamespace("fontBitstreamVera", quietly = TRUE)) {
+  if (system.file("fonts", package = "fontBitstreamVera") == "") {
     stop("fontBistreamVera must be installed", call. = FALSE)
   }
   check_font_family(variant, style, font_bitstream_vera_files)

@@ -11,12 +11,10 @@ Imports:
     fontBitstreamVera (>= 0.1)
 Suggests:
     testthat,
-    htmltools,
-    fontHeavy
+    htmltools
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 5.0.1
 Remotes:
     lionel-/fontBitstreamVera,
-    lionel-/fontHeavy
