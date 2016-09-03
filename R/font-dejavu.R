@@ -42,37 +42,43 @@ font_dejavu <- function(variant = "sans", style = "book", ext = "ttf") {
 
 font_dejavu_files <- list(
   sans = c(
-    book = "ttf/DejaVuSans",
-    bold = "ttf/DejaVuSans-Bold",
-    oblique = "ttf/DejaVuSans-Oblique",
-    `bold-oblique` = "ttf/DejaVuSans-BoldOblique",
-    `extra-light` = "ttf/DejaVuSans-ExtraLight"
+    book = "DejaVuSans",
+    bold = "DejaVuSans-Bold",
+    oblique = "DejaVuSans-Oblique",
+    `bold-oblique` = "DejaVuSans-BoldOblique",
+    `extra-light` = "DejaVuSans-ExtraLight"
   ),
   `sans-condensed` = c(
-    book = "ttf/DejaVuSansCondensed",
-    bold = "ttf/DejaVuSansCondensed-Bold",
-    oblique = "ttf/DejaVuSansCondensed-Oblique",
-    `bold-oblique` = "ttf/DejaVuSansCondensed-BoldOblique"
+    book = "DejaVuSansCondensed",
+    bold = "DejaVuSansCondensed-Bold",
+    oblique = "DejaVuSansCondensed-Oblique",
+    `bold-oblique` = "DejaVuSansCondensed-BoldOblique"
   ),
   `sans-mono` = c(
-    book = "ttf/DejaVuSansMono",
-    bold = "ttf/DejaVuSansMono-Bold",
-    oblique = "ttf/DejaVuSansMono-Oblique",
-    `bold-oblique` = "ttf/DejaVuSansMono-BoldOblique"
+    book = "DejaVuSansMono",
+    bold = "DejaVuSansMono-Bold",
+    oblique = "DejaVuSansMono-Oblique",
+    `bold-oblique` = "DejaVuSansMono-BoldOblique"
   ),
   serif = c(
-    book = "ttf/DejaVuSerif",
-    bold = "ttf/DejaVuSerif-Bold",
-    italic = "ttf/DejaVuSerif-Italic",
-    `bold-italic` = "ttf/DejaVuSerif-BoldItalic"
+    book = "DejaVuSerif",
+    bold = "DejaVuSerif-Bold",
+    italic = "DejaVuSerif-Italic",
+    `bold-italic` = "DejaVuSerif-BoldItalic"
   ),
   `serif-condensed` = c(
-    book = "ttf/DejaVuSerifCondensed",
-    bold = "ttf/DejaVuSerifCondensed-Bold",
-    italic = "ttf/DejaVuSerifCondensed-Italic",
-    `bold-italic` = "ttf/DejaVuSerifCondensed-BoldItalic"
+    book = "DejaVuSerifCondensed",
+    bold = "DejaVuSerifCondensed-Bold",
+    italic = "DejaVuSerifCondensed-Italic",
+    `bold-italic` = "DejaVuSerifCondensed-BoldItalic"
   ),
   `math-tex-gyre` = c(
-    regular = "ttf/DejaVuMathTexGyre"
+    regular = "DejaVuMathTexGyre"
   )
 )
+
+font_dejavu_files <- lapply(font_dejavu_files, function(variant) {
+  vapply(variant, function(style) {
+    file.path("ttf", style)
+  }, character(1))
+})
