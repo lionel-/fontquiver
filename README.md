@@ -32,6 +32,15 @@ The version number of the font is in the `version` field:
 font_bitstream_vera()$version
 ```
 
+### Install a font
+
+Some fonts are too larged to be shipped with fontquiver by
+default. You can install those manually with `font_install()`:
+
+```{r}
+font_install("dejavu")
+```
+
 ### Add web dependency on an installed font
 
 ```{r}

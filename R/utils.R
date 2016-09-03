@@ -22,6 +22,11 @@ check_font_ext <- function(ext) {
   }
 }
 
+check_font_exists <- function(font) {
+  dir <- system.file("fonts", paste0(font, "-fonts"), package = "fontquiver")
+  dir.exists(dir)
+}
+
 font_file <- function(base, name, ext) {
   dir <- paste0(base, "-fonts")
   file <- paste(name, ext, sep = ".")

@@ -1,5 +1,6 @@
 
-all: clean bitstream-vera dejavu
+all: clean bitstream-vera
+large: clean bitstream-vera dejavu
 
 
 BITSTREAM_VERA_VERSION= `cat bitstream-vera-VERSION`

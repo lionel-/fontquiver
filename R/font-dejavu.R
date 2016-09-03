@@ -16,6 +16,10 @@
 #' @references \url{http://dejavu-fonts.org}
 #' @export
 font_dejavu <- function(variant = "sans", style = "book", ext = "ttf") {
+  if (!check_font_exists("dejavu") && !font_install("dejavu")) {
+    return(invisible(FALSE))
+  }
+
   check_font_family(variant, style, font_dejavu_files)
   check_font_ext(ext)
 
