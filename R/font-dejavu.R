@@ -16,16 +16,20 @@
 #' @references \url{http://dejavu-fonts.org}
 #' @export
 font_dejavu <- function(variant = "sans", style = "book", ext = "ttf") {
-  if (!check_font_exists("dejavu") && !font_install("dejavu")) {
-    return(invisible(FALSE))
+  if (!requireNamespace("fontHeavy", quietly = TRUE)) {
+    stop(call. = FALSE,
+      "fontHeavy must be installed. Please run:\n",
+      "  install.packages('devtools')\n",
+      "  devtools::install_github('lionel-/fontHeavy')"
+    )
   }
 
   check_font_family(variant, style, font_dejavu_files)
   check_font_ext(ext)
 
   base <- font_dejavu_files[[variant]][[style]]
-  file <- font_file("dejavu", base, ext)
-  version <- font_version("dejavu")
+  file <- font_file("dejavu", base, ext, "fontHeavy")
+  version <- font_version("dejavu", "fontHeavy")
 
   structure(class = "font", list(
     file = file,

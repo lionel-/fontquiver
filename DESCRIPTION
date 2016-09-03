@@ -11,7 +11,8 @@ Imports:
     fontBitstreamVera (>= 0.1)
 Suggests:
     testthat,
-    htmltools
+    htmltools,
+    fontHeavy
 License: GPL-3
 Encoding: UTF-8
 LazyData: true

@@ -33,13 +33,14 @@ The version number of the font is in the `version` field:
 font_bitstream_vera()$version
 ```
 
-### Install a font
+### Install other fonts
 
 Some fonts are too larged to be shipped with fontquiver by
-default. You can install those manually with `font_install()`:
+default. You can install those from Github:
 
 ```{r}
-font_install("dejavu")
+devtools::install_github("lionel-/fontHeavy")
+font_dejavu("math-tex-gyre")
 ```
 
 ### Add web dependency on an installed font
