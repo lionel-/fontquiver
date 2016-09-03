@@ -1,18 +1,18 @@
 Package: fontquiver
 Title: Set of Fonts
 Version: 0.1
-Authors@R: c(
-    person("Lionel", "Henry", , "lionel.hry@gmail.com", c("cre", "aut")),
-    person("Bitstream", role = "cph"))
+Authors@R: person("Lionel", "Henry", , "lionel.hry@gmail.com", c("cre", "aut"))
 Description: Provides a set of fonts with permissive licences. This
     is useful when you would like to avoid system fonts to make sure
     your outputs are reproducible.
 Depends:
     R (>= 3.3.0)
+Imports:
+    fontBitstreamVera (>= 0.1)
 Suggests:
     testthat,
     htmltools
-License: GPL-3 + file LICENCE
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 5.0.1

@@ -11,6 +11,7 @@ Get the development version from github with:
 
 ```{r}
 # install.packages("devtools")
+devtools::install_github("lionel-/fontBitstreamVera")
 devtools::install_github("lionel-/fontquiver")
 ```
 

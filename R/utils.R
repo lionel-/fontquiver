@@ -22,21 +22,25 @@ check_font_ext <- function(ext) {
   }
 }
 
-check_font_exists <- function(font) {
-  dir <- system.file("fonts", paste0(font, "-fonts"), package = "fontquiver")
+check_font_exists <- function(font, package) {
+  dir <- system.file("fonts", paste0(font, "-fonts"), package = package)
   dir.exists(dir)
 }
 
-font_file <- function(base, name, ext) {
+font_file <- function(base, name, ext, package) {
   dir <- paste0(base, "-fonts")
-  file <- paste(name, ext, sep = ".")
-  path <- file.path(dir, file)
-  system.file("fonts", path, package = "fontquiver")
+  filename <- paste(name, ext, sep = ".")
+  path <- file.path(dir, filename)
+
+  file <- system.file("fonts", path, package = package)
+  if (file == "") {
+    stop("Internal error: cannot find font", filename)
+  }
+  file
 }
 
-font_version <- function(font) {
-  file <- system.file("fonts", paste0(font, "-VERSION"),
-    package = "fontquiver")
+font_version <- function(font, package) {
+  file <- system.file("fonts", paste0(font, "-VERSION"), package = package)
   readChar(file, file.info(file)$size - 1)
 }
 
