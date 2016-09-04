@@ -38,7 +38,7 @@ htmlFontDependency <- function(font_getter = font_bitstream_vera,
   writeLines(css, css_file, useBytes = TRUE)
 
   base_path <- str_trim_ext(font$file)
-  lapply(c("ttf", "svg", "woff", "eot"), function(ext) {
+  lapply(c("ttf", "woff"), function(ext) {
     from <- paste(base_path, ext, sep = ".")
     to <- file.path(css_dir, paste(base_file, ext, sep = "."))
     file.copy(from, to)
@@ -57,14 +57,10 @@ css_font_face <- function(id, file) {
   gsub("%s", file, c(
     "@font-face {",
     sprintf("  font-family: '%s';", id),
-    "  src: url('%s.eot');                                 /* IE9 Compat Modes */",
     "  src: ",
-    "    url('%s.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */",
     "    url('%s.woff') format('woff'),                    /* Modern Browsers */",
-    "    url('%s.ttf')  format('truetype'),                /* Safari, Android, iOS */",
-    "    url('%s.svg#svgFontName') format('svg')           /* Legacy iOS */",
+    "    url('%s.ttf')  format('truetype')                 /* Safari, Android, iOS */",
     " ;",
     "}"
   ))
-
 }
