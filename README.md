@@ -11,7 +11,6 @@ Get the development version from github with:
 
 ```{r}
 # install.packages("devtools")
-devtools::install_github("lionel-/fontBitstreamVera")
 devtools::install_github("lionel-/fontquiver")
 ```
 
@@ -33,7 +32,7 @@ The version number of the font is in the `version` field:
 font_bitstream_vera()$version
 ```
 
-### Install other fonts
+### Install heavy fonts
 
 Some fonts are too larged to be shipped with fontquiver by
 default. You can install those from Github:
@@ -46,6 +45,6 @@ font_dejavu("math-tex-gyre")
 ### Add web dependency on an installed font
 
 ```{r}
-install.packages("htmltools")
+# install.packages("htmltools")
 html_dep <- htmlFontDependency(style = "bold")
 ```
