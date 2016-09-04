@@ -1,6 +1,6 @@
 Package: fontquiver
 Title: Set of Installed Fonts
-Version: 0.1.0
+Version: 0.1.0.9000
 Authors@R: person("Lionel", "Henry", , "lionel.hry@gmail.com", c("cre", "aut"))
 Description: Provides a set of fonts with permissive licences. This is
     useful when you want to avoid system fonts to make sure your
