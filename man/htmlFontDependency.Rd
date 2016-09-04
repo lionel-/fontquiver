@@ -9,7 +9,7 @@ htmlFontDependency(font_getter = font_bitstream_vera, variant = NULL,
 }
 \arguments{
 \item{font_getter}{A fontquiver getter function such as
-\code{font_bistream_vera}.}
+\code{font_bitstream_vera}.}
 
 \item{variant}{Variant of the font, e.g. \code{"sans"} or \code{"serif"}.}
 

@@ -18,7 +18,7 @@
 font_dejavu <- function(variant = "sans", style = "book", ext = "ttf") {
   if (system.file("fonts", package = "fontHeavy") == "") {
     stop(call. = FALSE,
-      "fontHeavy must be installed. Please run:\n",
+      "fontHeavy must be installed from Github. Please run:\n",
       "  install.packages('devtools')\n",
       "  devtools::install_github('lionel-/fontHeavy')"
     )

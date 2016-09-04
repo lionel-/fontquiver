@@ -2,7 +2,7 @@
 #'
 #' @inheritParams font_bitstream_vera
 #' @param font_getter A fontquiver getter function such as
-#'   \code{font_bistream_vera}.
+#'   \code{font_bitstream_vera}.
 #' @export
 #' @examples
 #' # Create an htmlDependency object:
