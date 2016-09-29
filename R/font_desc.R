@@ -218,9 +218,9 @@ font_desc_liberation <- R6Class(
 #' @title include fonts as as CSS dependency
 #' @description include fonts for families \code{sans}, \code{serif}, \code{mono}
 #' as as CSS dependency.
-#' @param font_description a \code{font_desc} object
+#' @param font_families a \code{\link{font_desc}} object
 #' @export
-font_desc_html_dependency <- function(font_description =
+font_desc_html_dependency <- function(font_families =
                                      font_desc_bitstream_vera$new() ) {
   if (!requireNamespace("htmltools")) {
     stop("htmltools is not installed", call. = FALSE)
@@ -233,9 +233,9 @@ font_desc_html_dependency <- function(font_description =
   families_ <- c("sans", "serif", "mono")
   styles_ <- c("regular", "bold", "italic", "bolditalic")
 
-  id <- font_description$get_id()
+  id <- font_families$get_id()
 
-  fd_df <- font_description$get_data()
+  fd_df <- font_families$get_data()
   # filter to only graphic device families
   fd_df <- fd_df[fd_df$family %in% families_, ]
   # filter to only graphic device styles
@@ -245,8 +245,8 @@ font_desc_html_dependency <- function(font_description =
         factor(fd_df$style, levels = styles_ ) )
   fd_df <- fd_df[order_, ]
 
-  fd_df$file_ttf <- font_description$get_families(ext = "ttf", as_vector = TRUE)
-  fd_df$file_woff <- font_description$get_families(ext = "woff", as_vector = TRUE)
+  fd_df$file_ttf <- font_families$get_families(ext = "ttf", as_vector = TRUE)
+  fd_df$file_woff <- font_families$get_families(ext = "woff", as_vector = TRUE)
   fd_df$family_id <- paste( rep(id, nrow(fd_df) ), fd_df$family, sep = "-")
 
   args <- list( id = fd_df$family_id,

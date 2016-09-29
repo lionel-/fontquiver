@@ -4,10 +4,10 @@
 \alias{font_desc_html_dependency}
 \title{include fonts as as CSS dependency}
 \usage{
-font_desc_html_dependency(font_description = font_desc_bitstream_vera$new())
+font_desc_html_dependency(font_families = font_desc_bitstream_vera$new())
 }
 \arguments{
-\item{font_description}{a \code{font_desc} object}
+\item{font_families}{a \code{\link{font_desc}} object}
 }
 \description{
 include fonts for families \code{sans}, \code{serif}, \code{mono}
