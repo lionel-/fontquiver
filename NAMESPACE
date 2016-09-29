@@ -2,4 +2,9 @@
 
 export(font_bitstream_vera)
 export(font_dejavu)
+export(font_desc)
+export(font_desc_bitstream_vera)
+export(font_desc_dejavu)
+export(font_desc_liberation)
 export(htmlFontDependency)
+importFrom(R6,R6Class)
