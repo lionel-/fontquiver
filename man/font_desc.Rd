@@ -46,8 +46,11 @@ font families and styles.
 font description object.}
 }}
 \examples{
-font_desc_bitstream_vera$new()$get_families()
-font_desc_bitstream_vera$new()$get_data()
+# construct a \\code{font_desc} object
+font_desc_ <- font_desc_bitstream_vera$new()
+font_desc_$get_families()
+font_desc_$get_data()
+
 font_desc_dejavu$new()$get_families()
 font_desc_dejavu$new()$get_data()
 font_desc_liberation$new()$get_families()

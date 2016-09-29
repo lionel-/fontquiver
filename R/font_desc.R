@@ -12,8 +12,11 @@
 #' for a given font description.
 #'
 #' @examples
-#' font_desc_bitstream_vera$new()$get_families()
-#' font_desc_bitstream_vera$new()$get_data()
+#' # construct a \code{font_desc} object
+#' font_desc_ <- font_desc_bitstream_vera$new()
+#' font_desc_$get_families()
+#' font_desc_$get_data()
+#'
 #' font_desc_dejavu$new()$get_families()
 #' font_desc_dejavu$new()$get_data()
 #' font_desc_liberation$new()$get_families()
@@ -40,6 +43,11 @@ font_desc <- R6Class(
     get_version = function(){
       private$version
     },
+    print = function(){
+      if(!is.null(private$content))
+        print(private$content)
+      else warning("uninitialized font description")
+    } ,
     set_data = function(df){
 
       stopifnot( "family" %in% names(df) )
@@ -55,22 +63,24 @@ font_desc <- R6Class(
       self
     },
 
-    get_families = function() {
+    get_families = function(ext = "ttf", as_vector = FALSE) {
       families_variations <- c("sans", "serif", "mono")
       stopifnot(all( families_variations %in% private$content$family ))
 
       ldata <- split(private$content, private$content$family)[families_variations]
-      lapply(ldata, function(x) {
+      out <- lapply(ldata, function(x) {
         ref_result <- setNames( rep(NA, 4), c("regular", "bold", "italic", "bolditalic") )
         existings <- intersect( x$style, names(ref_result) )
         id <- match( existings, names(ref_result) )
-        ttf_files <- paste0(x$base[id], ".ttf")
+        ttf_files <- paste0(x$base[id], ".", ext)
         y <- system.file( file.path("fonts", private$fontdir), package = private$package )
         y <- paste0(y, "/", ttf_files)
         y <- ifelse( file.exists(y), y, NA )
         ref_result[id] <- y
         ref_result
       })
+      if( as_vector ) out <- as.character(unlist(out))
+      out
     }
   ),
   private = list(
@@ -219,19 +229,23 @@ font_desc_html_dependency <- function(font_description =
   if (!dir.exists(css_dir)) {
     dir.create(css_dir)
   }
-  id <- font_description$get_id()
   families_ <- c("sans", "serif", "mono")
   styles_ <- c("regular", "bold", "italic", "bolditalic")
-  ttf_files <- setNames( unlist( font_description$get_families() ), NULL )
+
+  id <- font_description$get_id()
+
   fd_df <- font_description$get_data()
+  # filter to only graphic device families
   fd_df <- fd_df[fd_df$family %in% families_, ]
+  # filter to only graphic device styles
   fd_df <- fd_df[fd_df$style %in% styles_, ]
+  # order the same way than get_families()
   order_ <- order(factor(fd_df$family, levels = families_ ) ,
         factor(fd_df$style, levels = styles_ ) )
   fd_df <- fd_df[order_, ]
 
-  fd_df$file_ttf <- ttf_files
-  fd_df$file_woff <- gsub( pattern = "\\.ttf$", replacement = ".woff", x = ttf_files )
+  fd_df$file_ttf <- font_description$get_families(ext = "ttf", as_vector = TRUE)
+  fd_df$file_woff <- font_description$get_families(ext = "woff", as_vector = TRUE)
   fd_df$family_id <- paste( rep(id, nrow(fd_df) ), fd_df$family, sep = "-")
 
   args <- list( id = fd_df$family_id,
@@ -259,13 +273,13 @@ font_desc_html_dependency <- function(font_description =
 get_css_font_face <- function(id, file, bold, italic) {
   if( is.na(file) ) return ("")
   paste( c(
-    "@font-face {",
-    sprintf("font-family: '%s';", id),
-    ifelse(italic, "font-style: italic;", ""),
-    ifelse(bold, "font-weight: bold;", ""),
-    sprintf("src: url('%s.ttf') format('truetype'), url('%s.woff') format('woff');", file, file),
-    "}"
-  ), collapse = "\n")
+    "@font-face {\n",
+    sprintf("font-family: '%s';\n", id),
+    ifelse(italic, "font-style: italic;\n", ""),
+    ifelse(bold, "font-weight: bold;\n", ""),
+    sprintf("src: url('%s.ttf') format('truetype'), url('%s.woff') format('woff');\n", file, file),
+    "}\n"
+  ), collapse = "")
 }
 
 
