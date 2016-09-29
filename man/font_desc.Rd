@@ -38,9 +38,11 @@ font families and styles.
 \describe{
 \item{\code{get_data}}{get a data.frame describing a font}
 
+\item{\code{get_id}}{get font id}
+
 \item{\code{get_families}}{get a list to be used by a graphic device.}
 
-\item{\code{set_data}}{convenience function to be used when creating a
+\item{\code{set_data,set_id}}{convenience function to be used when creating a
 font description object.}
 }}
 \examples{
