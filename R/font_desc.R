@@ -22,6 +22,7 @@
 #' font_desc_liberation$new()$get_families()
 #' font_desc_liberation$new()$get_data()
 #' @importFrom R6 R6Class
+#' @importFrom utils packageVersion
 font_desc <- R6Class(
   "font_desc",
   public = list(
