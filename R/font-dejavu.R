@@ -14,6 +14,7 @@
 #'   \code{file} field. The version number of the font is given in the
 #'   \code{version} field.
 #' @references \url{http://dejavu-fonts.org}
+#' @include utils.R
 #' @export
 font_dejavu <- function(variant = "sans", style = "book", ext = "ttf") {
   if (system.file("fonts", package = "fontHeavy") == "") {
@@ -40,45 +41,39 @@ font_dejavu <- function(variant = "sans", style = "book", ext = "ttf") {
   ))
 }
 
-font_dejavu_files <- list(
-  sans = c(
-    book = "DejaVuSans",
-    bold = "DejaVuSans-Bold",
-    oblique = "DejaVuSans-Oblique",
-    `bold-oblique` = "DejaVuSans-BoldOblique",
-    `extra-light` = "DejaVuSans-ExtraLight"
+font_dejavu_files <- font_files(font_dejavu,
+  sans = list(
+    book = font_sans("ttf/DejaVuSans"),
+    oblique = font_sans("ttf/DejaVuSans-Oblique", italic = TRUE),
+    bold = font_sans("ttf/DejaVuSans-Bold", bold = TRUE),
+    `bold-oblique` = font_sans("ttf/DejaVuSans-BoldOblique", italic = TRUE, bold = TRUE),
+    `extra-light` = font_sans("ttf/DejaVuSans-ExtraLight")
   ),
-  `sans-condensed` = c(
-    book = "DejaVuSansCondensed",
-    bold = "DejaVuSansCondensed-Bold",
-    oblique = "DejaVuSansCondensed-Oblique",
-    `bold-oblique` = "DejaVuSansCondensed-BoldOblique"
+  `sans-condensed` = list(
+    book = font_extra("ttf/DejaVuSansCondensed"),
+    oblique = font_extra("ttf/DejaVuSansCondensed-Oblique", italic = TRUE),
+    bold = font_extra("ttf/DejaVuSansCondensed-Bold", bold = TRUE),
+    `bold-oblique` = font_extra("ttf/DejaVuSansCondensed-BoldOblique", italic = TRUE, bold = TRUE)
   ),
-  `sans-mono` = c(
-    book = "DejaVuSansMono",
-    bold = "DejaVuSansMono-Bold",
-    oblique = "DejaVuSansMono-Oblique",
-    `bold-oblique` = "DejaVuSansMono-BoldOblique"
+  `sans-mono` = list(
+    book = font_mono("ttf/DejaVuSansMono"),
+    oblique = font_mono("ttf/DejaVuSansMono-Oblique", italic = TRUE),
+    bold = font_mono("ttf/DejaVuSansMono-Bold", bold = TRUE),
+    `bold-oblique` = font_mono("ttf/DejaVuSansMono-BoldOblique", italic = TRUE, bold = TRUE)
   ),
-  serif = c(
-    book = "DejaVuSerif",
-    bold = "DejaVuSerif-Bold",
-    italic = "DejaVuSerif-Italic",
-    `bold-italic` = "DejaVuSerif-BoldItalic"
+  serif = list(
+    book = font_serif("ttf/DejaVuSerif"),
+    italic = font_serif("ttf/DejaVuSerif-Italic", italic = TRUE),
+    bold = font_serif("ttf/DejaVuSerif-Bold", bold = TRUE),
+    `bold-italic` = font_serif("ttf/DejaVuSerif-BoldItalic", italic = TRUE, bold = TRUE)
   ),
-  `serif-condensed` = c(
-    book = "DejaVuSerifCondensed",
-    bold = "DejaVuSerifCondensed-Bold",
-    italic = "DejaVuSerifCondensed-Italic",
-    `bold-italic` = "DejaVuSerifCondensed-BoldItalic"
+  `serif-condensed` = list(
+    book = font_extra("ttf/DejaVuSerifCondensed"),
+    italic = font_extra("ttf/DejaVuSerifCondensed-Italic", italic = TRUE),
+    bold = font_extra("ttf/DejaVuSerifCondensed-Bold", bold = TRUE),
+    `bold-italic` = font_extra("ttf/DejaVuSerifCondensed-BoldItalic", italic = TRUE, bold = TRUE)
   ),
-  `math-tex-gyre` = c(
-    regular = "DejaVuMathTexGyre"
+  `math-tex-gyre` = list(
+    regular = font_extra("ttf/DejaVuMathTexGyre")
   )
 )
-
-font_dejavu_files <- lapply(font_dejavu_files, function(variant) {
-  vapply(variant, function(style) {
-    file.path("ttf", style)
-  }, character(1))
-})

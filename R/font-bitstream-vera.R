@@ -12,6 +12,7 @@
 #'   \code{file} field. The version number of the font is given in the
 #'   \code{version} field.
 #' @references \url{https://www.gnome.org/fonts/}
+#' @include utils.R
 #' @export
 font_bitstream_vera <- function(variant = "sans", style = "roman",
                                 ext = "ttf") {
@@ -34,21 +35,21 @@ font_bitstream_vera <- function(variant = "sans", style = "roman",
   ))
 }
 
-font_bitstream_vera_files <- list(
-  sans = c(
-    roman = "Vera",
-    bold = "VeraBd",
-    oblique = "VeraIt",
-    `bold-oblique` = "VeraBI"
+font_bitstream_vera_files <- font_files(font_bitstream_vera,
+  sans = list(
+    roman = font_sans("Vera"),
+    oblique = font_sans("VeraIt", italic = TRUE),
+    bold = font_sans("VeraBd", bold = TRUE),
+    `bold-oblique` = font_sans("VeraBI", bold = TRUE, italic = TRUE)
   ),
-  `sans-mono` = c(
-    roman = "VeraMono",
-    bold = "VeraMoBd",
-    oblique = "VeraMoIt",
-    `bold-oblique` = "VeraMoBI"
+  `sans-mono` = list(
+    roman = font_mono("VeraMono"),
+    oblique = font_mono("VeraMoIt", italic = TRUE),
+    bold = font_mono("VeraMoBd", bold = TRUE),
+    `bold-oblique` = font_mono("VeraMoBI", bold = TRUE, italic = TRUE)
   ),
-  serif = c(
-    roman = "VeraSe",
-    bold = "VeraSeBd"
+  serif = list(
+    roman = font_serif("VeraSe"),
+    bold = font_serif("VeraSeBd", bold = TRUE)
   )
 )
