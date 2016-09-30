@@ -18,7 +18,7 @@ devtools::install_github("lionel-/fontquiver")
 
 ### Get installed font
 
-Get the path to an installed font `foo` with `font_foo()` helper:
+Get the path to an installed font `foo` with the `font_foo()` getters:
 
 ```{r}
 font_bitstream_vera()$file
@@ -31,6 +31,29 @@ The version number of the font is in the `version` field:
 ```{r}
 font_bitstream_vera()$version
 ```
+
+
+### fontconfig and R categories of fonts
+
+The getters' arguments `variant` and `style` correspond to the font
+properties returned by `fontconfig`. This nomenclature is larger than
+R's standard classification of fonts. For example the DéjàVu set
+contains a font whose variant and style are `serif-condensed` and
+`extra-light` respectively.
+
+The R categories of fonts are families (`sans`, `serif`, `mono`, and
+`symbol`) and faces (`plain`, `bold`, `italic`, `bolditalic`).
+`font_info_files()` provides an alternative way of obtaining a font
+file using the R nomenclature:
+
+```{r}
+font_info_files("bitstream_vera")
+font_info_files("dejavu")$serif$bold
+```
+
+You can also get a more general table of metadata about a given font
+with `font_info()`.
+
 
 ### Install heavy fonts
 

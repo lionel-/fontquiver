@@ -1,4 +1,16 @@
-
+#' Font metadata
+#'
+#' This returns a data frame containing metadata about fonts. The
+#' columns "variant" and "style" correspond to the properties of the
+#' font as reported by fontconfig. These are suitable as parameters of
+#' a font getter function such as \code{\link{font_bitstream_vera}()}.
+#' The columns "family", "italic" and "bold" provide information in
+#' terms of R nomenclature of fonts. The column "base" gives the base
+#' filename of the font.
+#'
+#' @param font A string giving the name of the font
+#'   (e.g. \code{"bitstream_vera"}).
+#' @seealso \code{\link{font_info_files}()}
 #' @export
 font_info <- function(font) {
   files <- font_regularise_files(font)
@@ -6,6 +18,17 @@ font_info <- function(font) {
   gather_tree(info, c("variant", "style"))
 }
 
+#' Font files
+#'
+#' Returns a list of font files. The files are organised by R
+#' nomenclature of families (\code{"sans"}, \code{"serif"},
+#' \code{"mono"}, and \code{"symbol"}) and fonts (\code{"plain"},
+#' \code{"italic"}, \code{"bold"}, and \code{"bolditalic"}). When a
+#' font does not have a combination, \code{NA} is reported.
+#'
+#' @inheritParams font_info
+#' @examples
+#' font_info_files("bitstream_vera")$mono$bold
 #' @export
 font_info_files <- function(font) {
   info <- font_info(font)
