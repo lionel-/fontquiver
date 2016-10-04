@@ -37,19 +37,19 @@ font_bitstream_vera <- function(variant = "sans", style = "roman",
 
 font_bitstream_vera_files <- font_files(font_bitstream_vera,
   sans = list(
-    roman = font_sans("Vera"),
-    oblique = font_sans("VeraIt", italic = TRUE),
-    bold = font_sans("VeraBd", bold = TRUE),
-    `bold-oblique` = font_sans("VeraBI", bold = TRUE, italic = TRUE)
+    roman = font_sans("Vera", face = "plain", weight = 80),
+    oblique = font_sans("VeraIt", face = "italic", weight = 80),
+    bold = font_sans("VeraBd", face = "bold", weight = 200),
+    `bold-oblique` = font_sans("VeraBI", face = "bolditalic", weight = 200)
   ),
   `sans-mono` = list(
-    roman = font_mono("VeraMono"),
-    oblique = font_mono("VeraMoIt", italic = TRUE),
-    bold = font_mono("VeraMoBd", bold = TRUE),
-    `bold-oblique` = font_mono("VeraMoBI", bold = TRUE, italic = TRUE)
+    roman = font_mono("VeraMono", weight = 80),
+    oblique = font_mono("VeraMoIt", face = "italic", weight = 80),
+    bold = font_mono("VeraMoBd", face = "bold", weight = 200),
+    `bold-oblique` = font_mono("VeraMoBI", face = "bolditalic", weight = 200)
   ),
   serif = list(
-    roman = font_serif("VeraSe"),
-    bold = font_serif("VeraSeBd", bold = TRUE)
+    roman = font_serif("VeraSe", face = "plain", weight = 80),
+    bold = font_serif("VeraSeBd", face = "bold", weight = 200)
   )
 )

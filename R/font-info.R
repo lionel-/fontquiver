@@ -38,8 +38,8 @@ font_info_files <- function(font) {
   fnames <- stats::setNames(fnames, fnames)
 
   filter_file <- function(...) {
-    filtered <- filter_first(info, ..., ~!is.na(family))
-    if (nrow(filtered) == 1) {
+    filtered <- filter_first(info, ..., ~!is.na(family), ~!is.na(face))
+    if (nrow(filtered)) {
       font <- do.call(getter, filtered[c("variant", "style")])
       font$file
     } else {
@@ -49,10 +49,11 @@ font_info_files <- function(font) {
 
   families <- lapply(fnames, function(r_family) {
     list(
-      plain = filter_file(~family == r_family, ~italic == FALSE, ~bold == FALSE),
-      italic = filter_file(~family == r_family, ~italic == TRUE, ~bold == FALSE),
-      bold = filter_file(~family == r_family, ~italic == FALSE, ~bold == TRUE),
-      bolditalic = filter_file(~family == r_family, ~italic == TRUE, ~bold == TRUE)
+      plain = filter_file(~family == r_family, ~face == "plain"),
+      italic = filter_file(~family == r_family, ~face == "italic"),
+      bold = filter_file(~family == r_family, ~face == "bold"),
+      bolditalic = filter_file(~family == r_family, ~face == "bolditalic"),
+      symbol = filter_file(~family == r_family, ~face == "symbol")
     )
   })
 

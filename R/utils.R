@@ -1,27 +1,27 @@
 
-font_data <- function(base, italic, bold, family) {
+font_data <- function(base, family, face, weight) {
   structure(base,
     family = family,
-    italic = italic,
-    bold = bold,
+    face = face,
+    weight = weight,
     class = "font_data"
   )
 }
 
-font_extra <- function(base, italic = FALSE, bold = FALSE) {
-  font_data(base, italic = italic, bold = bold, family = NA)
+font_extra <- function(base, face = NA, weight = NA) {
+  font_data(base, family = NA, face = face, weight = weight)
 }
 
-font_sans <- function(base, italic = FALSE, bold = FALSE) {
-  font_data(base = base, italic = italic, bold = bold, family = "sans")
+font_sans <- function(base, face = NA, weight = NA) {
+  font_data(base = base, family = "sans", face = face, weight = weight)
 }
 
-font_serif <- function(base, italic = FALSE, bold = FALSE) {
-  font_data(base = base, italic = italic, bold = bold, family = "serif")
+font_serif <- function(base, face = NA, weight = NA) {
+  font_data(base = base, family = "serif", face = face, weight = weight)
 }
 
-font_mono <- function(base, italic = FALSE, bold = FALSE) {
-  font_data(base = base, italic = italic, bold = bold, family = "mono")
+font_mono <- function(base, face = NA, weight = NA) {
+  font_data(base = base, family = "mono", face = face, weight = weight)
 }
 
 font_files <- function(getter, ...) {
@@ -80,6 +80,22 @@ font_version <- function(font, package) {
   file <- system.file("fonts", paste0(font, "-VERSION"), package = package)
   readChar(file, file.info(file)$size - 1)
 }
+
+# Loosely adapted from
+# https://lists.freedesktop.org/archives/fontconfig/2011-September/003645.html
+fontconfig_to_css_weight <- function(w) {
+  if (w <= 40) return(100)
+  if (w <= 50) return(200)
+  if (w <= 70) return(300)
+  if (w <= 80) return(400)
+  if (w <= 100) return(500)
+  if (w <= 180) return(600)
+  if (w <= 200) return(700)
+  if (w <= 205) return(800)
+  900
+}
+
+# R Utils ------------------------------------------------------------
 
 `%||%` <- function(x, y) {
   if (is.null(x)) y else x

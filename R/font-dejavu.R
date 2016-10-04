@@ -43,37 +43,37 @@ font_dejavu <- function(variant = "sans", style = "book", ext = "ttf") {
 
 font_dejavu_files <- font_files(font_dejavu,
   sans = list(
-    book = font_sans("ttf/DejaVuSans"),
-    oblique = font_sans("ttf/DejaVuSans-Oblique", italic = TRUE),
-    bold = font_sans("ttf/DejaVuSans-Bold", bold = TRUE),
-    `bold-oblique` = font_sans("ttf/DejaVuSans-BoldOblique", italic = TRUE, bold = TRUE),
-    `extra-light` = font_sans("ttf/DejaVuSans-ExtraLight")
+    book = font_sans("ttf/DejaVuSans", face = "plain", weight = 80),
+    oblique = font_sans("ttf/DejaVuSans-Oblique", face = "italic", weight = 80),
+    bold = font_sans("ttf/DejaVuSans-Bold", face = "bold", weight = 200),
+    `bold-oblique` = font_sans("ttf/DejaVuSans-BoldOblique", face = "bolditalic", weight = 200),
+    `extra-light` = font_sans("ttf/DejaVuSans-ExtraLight", weight = 40)
   ),
   `sans-condensed` = list(
-    book = font_extra("ttf/DejaVuSansCondensed"),
-    oblique = font_extra("ttf/DejaVuSansCondensed-Oblique", italic = TRUE),
-    bold = font_extra("ttf/DejaVuSansCondensed-Bold", bold = TRUE),
-    `bold-oblique` = font_extra("ttf/DejaVuSansCondensed-BoldOblique", italic = TRUE, bold = TRUE)
+    book = font_extra("ttf/DejaVuSansCondensed", face = "plain", weight = 80),
+    oblique = font_extra("ttf/DejaVuSansCondensed-Oblique", face = "italic", weight = 80),
+    bold = font_extra("ttf/DejaVuSansCondensed-Bold", face = "bold", weight = 200),
+    `bold-oblique` = font_extra("ttf/DejaVuSansCondensed-BoldOblique", face = "bolditalic", weight = 200)
   ),
   `sans-mono` = list(
-    book = font_mono("ttf/DejaVuSansMono"),
-    oblique = font_mono("ttf/DejaVuSansMono-Oblique", italic = TRUE),
-    bold = font_mono("ttf/DejaVuSansMono-Bold", bold = TRUE),
-    `bold-oblique` = font_mono("ttf/DejaVuSansMono-BoldOblique", italic = TRUE, bold = TRUE)
+    book = font_mono("ttf/DejaVuSansMono", face = "plain", weight = 80),
+    oblique = font_mono("ttf/DejaVuSansMono-Oblique", face = "italic", weight = 80),
+    bold = font_mono("ttf/DejaVuSansMono-Bold", face = "bold", weight = 200),
+    `bold-oblique` = font_mono("ttf/DejaVuSansMono-BoldOblique", face = "bolditalic", weight = 200)
   ),
   serif = list(
-    book = font_serif("ttf/DejaVuSerif"),
-    italic = font_serif("ttf/DejaVuSerif-Italic", italic = TRUE),
-    bold = font_serif("ttf/DejaVuSerif-Bold", bold = TRUE),
-    `bold-italic` = font_serif("ttf/DejaVuSerif-BoldItalic", italic = TRUE, bold = TRUE)
+    book = font_serif("ttf/DejaVuSerif", face = "plain", weight = 80),
+    italic = font_serif("ttf/DejaVuSerif-Italic", face = "italic", weight = 80),
+    bold = font_serif("ttf/DejaVuSerif-Bold", face = "bold", weight = 200),
+    `bold-italic` = font_serif("ttf/DejaVuSerif-BoldItalic", face = "bolditalic", weight = 200)
   ),
   `serif-condensed` = list(
-    book = font_extra("ttf/DejaVuSerifCondensed"),
-    italic = font_extra("ttf/DejaVuSerifCondensed-Italic", italic = TRUE),
-    bold = font_extra("ttf/DejaVuSerifCondensed-Bold", bold = TRUE),
-    `bold-italic` = font_extra("ttf/DejaVuSerifCondensed-BoldItalic", italic = TRUE, bold = TRUE)
+    book = font_extra("ttf/DejaVuSerifCondensed", face = "plain", weight = 80),
+    italic = font_extra("ttf/DejaVuSerifCondensed-Italic", face = "italic", weight = 80),
+    bold = font_extra("ttf/DejaVuSerifCondensed-Bold", face = "bold", weight = 200),
+    `bold-italic` = font_extra("ttf/DejaVuSerifCondensed-BoldItalic", face = "bolditalic", weight = 200)
   ),
   `math-tex-gyre` = list(
-    regular = font_extra("ttf/DejaVuMathTexGyre")
+    regular = font_extra("ttf/DejaVuMathTexGyre", face = "plain", weight = 80)
   )
 )
