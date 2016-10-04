@@ -177,7 +177,7 @@ filter <- function(df, ...) {
     call(fun, lhs, rhs)
   }
   pattern <- Reduce(bind_call, fs[-1], fs[[1]])
-  args <- list(df, pattern, substitute())
+  args <- list(df, pattern, substitute(), drop = FALSE)
 
   # Assumes all formula envs are identical
   env <- as.environment(df)
@@ -189,7 +189,7 @@ filter_first <- function(df, ...) {
   filtered <- filter(df, ...)
 
   if (nrow(filtered) > 1) {
-    filtered[1, ]
+    filtered[1, , drop = FALSE]
   } else {
     filtered
   }
