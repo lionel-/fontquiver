@@ -16,7 +16,7 @@
 #' @references \url{http://dejavu-fonts.org}
 #' @include utils.R
 #' @export
-font_dejavu <- function(variant = "sans", style = "book", ext = "ttf") {
+font_dejavu <- function(variant = "sans", style = "book") {
   if (system.file("fonts", package = "fontHeavy") == "") {
     stop(call. = FALSE,
       "fontHeavy must be installed from Github. Please run:\n",
@@ -24,7 +24,7 @@ font_dejavu <- function(variant = "sans", style = "book", ext = "ttf") {
       "  devtools::install_github('lionel-/fontHeavy')"
     )
   }
-  font_get("DejaVu", variant, style, ext, pkg = "fontHeavy")
+  font_get("DejaVu", variant, style, pkg = "fontHeavy")
 }
 
 font_dejavu_files <- font_files(font_dejavu,

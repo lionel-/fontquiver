@@ -4,14 +4,12 @@
 \alias{font_dejavu}
 \title{Dejavu fonts}
 \usage{
-font_dejavu(variant = "sans", style = "book", ext = "ttf")
+font_dejavu(variant = "sans", style = "book")
 }
 \arguments{
 \item{variant}{Variant of the font, e.g. \code{"sans"} or \code{"serif"}.}
 
 \item{style}{Style of the font, e.g. \code{"roman"} or \code{"bold"}.}
-
-\item{ext}{Either \code{"ttf"} or \code{"woff"}.}
 }
 \value{
 The path to the requested font is provided in the

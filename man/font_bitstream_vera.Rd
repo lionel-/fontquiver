@@ -4,19 +4,17 @@
 \alias{font_bitstream_vera}
 \title{Bitstream Vera fonts}
 \usage{
-font_bitstream_vera(variant = "sans", style = "roman", ext = "ttf")
+font_bitstream_vera(variant = "sans", style = "roman")
 }
 \arguments{
 \item{variant}{Variant of the font, e.g. \code{"sans"} or \code{"serif"}.}
 
 \item{style}{Style of the font, e.g. \code{"roman"} or \code{"bold"}.}
-
-\item{ext}{Either \code{"ttf"} or \code{"woff"}.}
 }
 \value{
 The path to the requested font is provided in the
-  \code{file} field. The version number of the font is given in the
-  \code{version} field.
+  \code{ttf} and \code{woff} fields. The version number of the font
+  is given in the \code{version} field.
 }
 \description{
 Available variants (style): \code{sans} (\code{roman}, \code{bold},

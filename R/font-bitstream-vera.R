@@ -7,19 +7,17 @@
 #'
 #' @param variant Variant of the font, e.g. \code{"sans"} or \code{"serif"}.
 #' @param style Style of the font, e.g. \code{"roman"} or \code{"bold"}.
-#' @param ext Either \code{"ttf"} or \code{"woff"}.
 #' @return The path to the requested font is provided in the
-#'   \code{file} field. The version number of the font is given in the
-#'   \code{version} field.
+#'   \code{ttf} and \code{woff} fields. The version number of the font
+#'   is given in the \code{version} field.
 #' @references \url{https://www.gnome.org/fonts/}
 #' @include utils.R
 #' @export
-font_bitstream_vera <- function(variant = "sans", style = "roman",
-                                ext = "ttf") {
+font_bitstream_vera <- function(variant = "sans", style = "roman") {
   if (system.file("fonts", package = "fontBitstreamVera") == "") {
     stop("fontBitstreamVera must be installed", call. = FALSE)
   }
-  font_get("Bitstream Vera", variant, style, ext, pkg = "fontBitstreamVera")
+  font_get("Bitstream Vera", variant, style, pkg = "fontBitstreamVera")
 }
 
 font_bitstream_vera_files <- font_files(font_bitstream_vera,

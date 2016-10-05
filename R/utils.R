@@ -25,21 +25,22 @@ font_data <- function(base, family, face, weight) {
   )
 }
 
-font_get <- function(fontset, variant, style, ext, pkg) {
+font_get <- function(fontset, variant, style, pkg) {
   variant <- str_standardise(variant, sep = "-")
   style <- str_standardise(style, sep = "-")
 
   props <- font_props(fontset)
   check_font_family(variant, style, props$files)
-  check_font_ext(ext)
 
   std_name <- str_standardise(fontset, sep = "-")
   base <- props$files[[variant]][[style]]
-  file <- font_file(std_name, base, ext, package = pkg)
+  ttf <- font_file(std_name, base, "ttf", package = pkg)
+  woff <- font_file(std_name, base, "woff", package = pkg)
   version <- font_version(std_name, package = pkg)
 
   structure(class = "font_file", list(
-    file = file,
+    ttf = ttf,
+    woff = woff,
     fontset = fontset,
     name = paste(fontset, str_prettify(variant), sep = " "),
     variant = variant,
@@ -95,12 +96,6 @@ check_font_family <- function(face, style, files) {
       "Available styles for variant ", face, ":\n",
       paste(names(files[[face]]), collapse = ", ")
     )
-  }
-}
-
-check_font_ext <- function(ext) {
-  if (!ext %in% c("ttf", "woff")) {
-    stop("`ext` must be either 'ttf' or 'woff'", call. = FALSE)
   }
 }
 
