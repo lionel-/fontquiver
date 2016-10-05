@@ -44,6 +44,9 @@ font_get <- function(fontset, variant, style, ext, pkg) {
     name = paste(fontset, str_prettify(variant), sep = " "),
     variant = variant,
     style = style,
+    weight = attr(base, "weight"),
+    family = attr(base, "family"),
+    face = attr(base, "face"),
     version = version
   ))
 }
