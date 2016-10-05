@@ -12,6 +12,13 @@ fontset_register <- function(fontset, getter, files) {
   assign(fontset, props, envir = registered_fonts)
 }
 
+#' Get list of all registered fonts
+#'
+#' @export
+fontset_list <- function() {
+  names(registered_fonts)
+}
+
 fontset_props <- function(fontset) {
   fontset <- str_prettify(fontset)
   get(fontset, envir = registered_fonts)
