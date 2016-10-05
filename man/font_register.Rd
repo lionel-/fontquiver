@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{font_register}
 \alias{font_register}
-\title{Register a font}
+\title{Register a font to fontquiver}
 \usage{
 font_register(fontset, getter, files)
 }
@@ -14,6 +14,6 @@ font_register(fontset, getter, files)
 \item{files}{Data structure containing font information.}
 }
 \description{
-Register a font
+Register a font to fontquiver
 }
 

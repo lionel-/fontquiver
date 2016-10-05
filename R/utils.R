@@ -1,7 +1,7 @@
 
 registered_fonts <- new.env(parent = emptyenv())
 
-#' Register a font
+#' Register a font to fontquiver
 #'
 #' @param fontset Name of the font set.
 #' @param getter Constructor of \code{font_file} objects.
@@ -38,12 +38,15 @@ font_get <- function(fontset, variant, style, pkg) {
   ttf <- font_file(std_name, base, "ttf", package = pkg)
   woff <- font_file(std_name, base, "woff", package = pkg)
   version <- font_version(std_name, package = pkg)
+  name <- paste(fontset, str_prettify(variant), sep = " ")
+  fullname <- paste(name, str_prettify(style), sep = " ")
 
   structure(class = "font_file", list(
     ttf = ttf,
     woff = woff,
     fontset = fontset,
-    name = paste(fontset, str_prettify(variant), sep = " "),
+    name = name,
+    fullname = fullname,
     variant = variant,
     style = style,
     weight = attr(base, "weight"),
@@ -181,6 +184,7 @@ str_standardise <- function(s, sep = "-") {
 }
 
 str_prettify <- function(str) {
+  if (is.null(str)) return(NULL)
   vapply_chr(str, function(s) {
     s <- strsplit(s, "-|_| ")[[1]]
     paste0(toupper(substring(s, 1, 1)), substring(s, 2), collapse=" ")
