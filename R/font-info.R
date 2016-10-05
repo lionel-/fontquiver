@@ -40,8 +40,7 @@ font_families <- function(fontset) {
   filter_file <- function(...) {
     filtered <- filter_first(info, ..., ~!is.na(family), ~!is.na(face))
     if (nrow(filtered)) {
-      font <- do.call(getter, filtered[c("variant", "style")])
-      font
+      do.call(getter, filtered[c("variant", "style")])
     } else {
       NULL
     }
@@ -49,16 +48,17 @@ font_families <- function(fontset) {
 
   fnames <- set_names(c("sans", "serif", "mono", "symbol"))
   families <- lapply(fnames, function(r_family) {
-    list(
+    family <- list(
       plain = filter_file(~family == r_family, ~face == "plain"),
       italic = filter_file(~family == r_family, ~face == "italic"),
       bold = filter_file(~family == r_family, ~face == "bold"),
       bolditalic = filter_file(~family == r_family, ~face == "bolditalic"),
       symbol = filter_file(~family == r_family, ~face == "symbol")
     )
+    structure(family, class = "font_family")
   })
 
-  families
+  structure(families, class = "font_families")
 }
 
 #' Font family
@@ -89,10 +89,13 @@ font_variants <- function(fontset) {
   props <- font_props(fontset)
   variants <- names(props$files)
 
-  Map(function(variant, variant_name) {
+  variants <- Map(function(variant, variant_name) {
     styles <- set_names(names(variant))
-    lapply(styles, props$getter, variant = variant_name)
+    styles <- lapply(styles, props$getter, variant = variant_name)
+    structure(styles, class = "font_styles")
   }, props$files, names(props$files))
+
+  structure(variants, class = "font_variants")
 }
 
 #' Font variant
