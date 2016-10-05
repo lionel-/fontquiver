@@ -55,19 +55,19 @@ font_families <- function(fontset) {
       bolditalic = filter_file(~family == r_family, ~face == "bolditalic"),
       symbol = filter_file(~family == r_family, ~face == "symbol")
     )
-    structure(family, class = "font_family")
+    structure(family, class = "font_faces")
   })
 
   structure(families, class = "font_families")
 }
 
-#' Font family
+#' Font faces for a font family
 #'
 #' @inheritParams font_info
 #' @param family One of \code{"sans"}, \code{"serif"}, \code{"mono"}
 #'   or \code{"symbol"}.
 #' @export
-font_family <- function(fontset, family) {
+font_faces <- function(fontset, family) {
   families <- font_families(fontset)
   family <- str_standardise(family, sep = "")
   families[[family]]
@@ -98,13 +98,12 @@ font_variants <- function(fontset) {
   structure(variants, class = "font_variants")
 }
 
-#' Font variant
+#' Font styles for a font variant
 #'
 #' @inheritParams font_info
-#' @param variant Font variant, according to Fontconfig's
-#'   nomenclature.
+#' @param variant Font variant, as per Fontconfig's nomenclature.
 #' @export
-font_variant <- function(fontset, variant) {
+font_styles <- function(fontset, variant) {
   variant <- str_standardise(variant, sep = "-")
   variants <- font_variants(fontset)
   variants[[variant]]
