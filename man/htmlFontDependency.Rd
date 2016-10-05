@@ -8,10 +8,9 @@ htmlFontDependency(...)
 }
 \arguments{
 \item{...}{Fonts or collections of fonts. See
-\code{\link{font_families}()}, \code{\link{font_faces}()},
-\code{\link{font_variants}()}, and \code{\link{font_styles}()}
-for creating collections of fonts. You can also supply a list of
-individual fonts.}
+\code{\link{font_families}()} and \code{\link{font_variants}()}
+for creating collections of fonts. You can also supply lists of
+individual fonts as returned by \code{\link{fonts}()}.}
 }
 \description{
 Include font as CSS dependency

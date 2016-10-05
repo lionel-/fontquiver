@@ -1,11 +1,7 @@
 #' Include font as CSS dependency
 #'
 #' @inheritParams htmltools::htmlDependency
-#' @param ... Fonts or collections of fonts. See
-#'   \code{\link{font_families}()}, \code{\link{font_faces}()},
-#'   \code{\link{font_variants}()}, and \code{\link{font_styles}()}
-#'   for creating collections of fonts. You can also supply a list of
-#'   individual fonts.
+#' @inheritParams splice_fonts
 #' @export
 #' @examples
 #' # Create an htmlDependency object:
@@ -44,34 +40,6 @@ htmlFontDependency <- function(...) {
     src = css_dir,
     stylesheet = basename(css_file)
   )
-}
-
-splice_fonts <- function(...) {
-  fonts <- list(...)
-
-  known_classes <- c(
-    "font_families", "font_variants","font_faces",
-    "font_styles", "font_file", "list"
-  )
-  unknown <- setdiff(vapply_chr(fonts, class), known_classes)
-  if (length(unknown)) {
-    stop("Unknown classes: ", paste(unknown, collapse = ", "), call. = FALSE)
-  }
-
-  meta <- keep(fonts, inherits, c("font_families", "font_variants"))
-  coll <- keep(fonts, inherits, c("font_faces", "font_styles"))
-  file <- keep(fonts, inherits, "font_file")
-  list <- keep(fonts, is_bare_list)
-
-  meta <- flatten(lapply(meta, flatten))
-  coll <- flatten(coll)
-  list <- flatten(list)
-
-  if (!all(vapply_lgl(list, inherits, "font_file"))) {
-    stop("Lists can contain only `font_file` objects", call. = FALSE)
-  }
-
-  compact(c(meta, coll, file, list))
 }
 
 css_font_style <- function(face) {

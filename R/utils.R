@@ -123,6 +123,53 @@ font_version <- function(font, package) {
   readChar(file, file.info(file)$size - 1)
 }
 
+#' Splice fonts and font collections
+#'
+#' \code{splice_fonts()} Reduces its arguments to a flat list. It
+#' accepts indinstinctly \code{font_file} objects, lists of
+#' \code{font_file} objects (obtained with \code{\link{fonts}()}), or
+#' collections of fonts produced by \code{\link{font_variants}()} or
+#' \code{\link{font_families}()}. Duplicate fonts are removed from
+#' the result.
+#'
+#' @param ... Fonts or collections of fonts. See
+#'   \code{\link{font_families}()} and \code{\link{font_variants}()}
+#'   for creating collections of fonts. You can also supply lists of
+#'   individual fonts as returned by \code{\link{fonts}()}.
+#' @export
+#' @examples
+#' splice_fonts(font_variants("DejaVu"), font_families("Bitstream Vera"))
+#' splice_fonts(font_variants("DejaVu")$Sans, font_families("Bitstream Vera")$mono)
+splice_fonts <- function(...) {
+  fonts <- list(...)
+
+  known_classes <- c(
+    "font_families", "font_variants","font_faces",
+    "font_styles", "font_file", "list"
+  )
+  unknown <- setdiff(vapply_chr(fonts, class), known_classes)
+  if (length(unknown)) {
+    stop("Unknown classes: ", paste(unknown, collapse = ", "), call. = FALSE)
+  }
+
+  meta <- keep(fonts, inherits, c("font_families", "font_variants"))
+  coll <- keep(fonts, inherits, c("font_faces", "font_styles"))
+  file <- keep(fonts, inherits, "font_file")
+  list <- keep(fonts, is_bare_list)
+
+  meta <- flatten(lapply(meta, flatten))
+  coll <- flatten(coll)
+  list <- flatten(list)
+
+  if (!all(vapply_lgl(list, inherits, "font_file"))) {
+    stop("Lists can contain only `font_file` objects", call. = FALSE)
+  }
+
+  fonts <- compact(c(meta, coll, file, list))
+  names(fonts) <- vapply_chr(fonts, `[[`, "fullname")
+  fonts
+}
+
 # R Utils ------------------------------------------------------------
 
 `%||%` <- function(x, y) {
