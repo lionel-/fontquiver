@@ -29,6 +29,7 @@ fontset_regularise_files <- function(files) {
   files
 }
 
+
 registered_fontsets <- new.env(parent = emptyenv())
 
 #' Register a font to fontquiver
@@ -52,4 +53,32 @@ fontset_list <- function() {
 fontset_props <- function(fontset) {
   fontset <- str_prettify(fontset)
   get(fontset, envir = registered_fontsets)
+}
+
+
+# Constructors -------------------------------------------------------
+
+font_data <- function(base, family, face, weight) {
+  structure(base,
+    family = family,
+    face = face,
+    weight = weight,
+    class = "font_data"
+  )
+}
+
+font_extra <- function(base, face = NA, weight = NA) {
+  font_data(base, family = NA, face = face, weight = weight)
+}
+
+font_sans <- function(base, face = NA, weight = NA) {
+  font_data(base = base, family = "sans", face = face, weight = weight)
+}
+
+font_serif <- function(base, face = NA, weight = NA) {
+  font_data(base = base, family = "serif", face = face, weight = weight)
+}
+
+font_mono <- function(base, face = NA, weight = NA) {
+  font_data(base = base, family = "mono", face = face, weight = weight)
 }

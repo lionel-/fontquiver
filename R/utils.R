@@ -1,13 +1,4 @@
 
-font_data <- function(base, family, face, weight) {
-  structure(base,
-    family = family,
-    face = face,
-    weight = weight,
-    class = "font_data"
-  )
-}
-
 font_get <- function(fontset, variant, style, pkg) {
   variant <- str_standardise(variant, sep = "-")
   style <- str_standardise(style, sep = "-")
@@ -37,22 +28,6 @@ font_get <- function(fontset, variant, style, pkg) {
     package = pkg,
     version = version
   ))
-}
-
-font_extra <- function(base, face = NA, weight = NA) {
-  font_data(base, family = NA, face = face, weight = weight)
-}
-
-font_sans <- function(base, face = NA, weight = NA) {
-  font_data(base = base, family = "sans", face = face, weight = weight)
-}
-
-font_serif <- function(base, face = NA, weight = NA) {
-  font_data(base = base, family = "serif", face = face, weight = weight)
-}
-
-font_mono <- function(base, face = NA, weight = NA) {
-  font_data(base = base, family = "mono", face = face, weight = weight)
 }
 
 check_font_family <- function(face, style, files) {

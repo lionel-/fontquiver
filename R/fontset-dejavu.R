@@ -1,5 +1,5 @@
 #' @references \url{http://dejavu-fonts.org}
-#' @include utils.R
+#' @include fontset.R
 fontset_dejavu <- function(variant = "sans", style = "book") {
   if (system.file("fonts", package = "fontHeavy") == "") {
     stop(call. = FALSE,

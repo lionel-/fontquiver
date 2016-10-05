@@ -1,6 +1,5 @@
 #' Include font as CSS dependency
 #'
-#' @inheritParams htmltools::htmlDependency
 #' @inheritParams splice_fonts
 #' @export
 #' @examples
