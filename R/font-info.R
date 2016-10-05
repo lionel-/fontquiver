@@ -9,7 +9,8 @@
 #' filename of the font.
 #'
 #' @param fontset A string giving the name of a set of fonts
-#'   (e.g. \code{"Bitstream Vera"}).
+#'   (e.g. \code{"Bitstream Vera"}). Use \code{\link{fontset_list}()}
+#'   to obtain the list of fontsets registered in your session.
 #' @seealso \code{\link{font_families}()}, \code{\link{font_variants}()}
 #' @export
 font_info <- function(fontset) {
@@ -19,22 +20,56 @@ font_info <- function(fontset) {
   gather_tree(info, c("variant", "style"))
 }
 
-#' Font families
+#' Return all fonts for of a fontset
 #'
-#' Returns families of font files for a given font set. The files are
-#' organised by R nomenclature of families (\code{"sans"},
+#' \code{fonts()} returns the list of all \code{font_file} objects for
+#' a given fontset. \code{font()} returns one specific font.
+#' @inheritParams font_info
+#' @param variant Font variant, as per Fontconfig's nomenclature.
+#' @param style Font style, as per Fontconfig's nomenclature.
+#' @export
+fonts <- function(fontset) {
+  info <- font_info(fontset)
+  getter <- fontset_props(fontset)$getter
+
+  fonts <- Map(getter, variant = info$variant, style = info$style)
+  fonts_names <- flatten(Map(paste, info$variant, style = info$style, sep = "-"))
+  names(fonts) <- vapply_chr(fonts_names, str_prettify)
+
+  fonts
+}
+
+#' @rdname fonts
+#' @export
+font <- function(fontset, variant, style) {
+  fontset_props(fontset)$getter(variant, style)
+}
+
+#' Font families and faces
+#'
+#' Returns families or faces as font files for a given font set. The
+#' files are organised by R nomenclature of families (\code{"sans"},
 #' \code{"serif"}, \code{"mono"}, and \code{"symbol"}) and faces
 #' (\code{"plain"}, \code{"italic"}, \code{"bold"}, and
 #' \code{"bolditalic"}). When a font does not have a combination,
 #' \code{NA} is reported.
 #'
+#' Note that the fonts returned by \code{font_faces()} and
+#' \code{\link{font_families}()} are constrained by R's nomenclature
+#' of fonts and are thus a subset of those returned by
+#' \link{\link{font_variants}()} and \code{\link{font_styles}()}.
 #' @inheritParams font_info
+#' @param family One of \code{"sans"}, \code{"serif"}, \code{"mono"}
+#'   or \code{"symbol"}.
+#' @export
+#' @seealso \code{\link{font_styles}()}, \code{\link{font_families}()},
+#'   \code{\link{fonts}()}
 #' @examples
 #' font_families("Bitstream Vera")$mono$bold
-#' @export
+#' font_faces("Bitstream Vera", "mono")
 font_families <- function(fontset) {
   info <- font_info(fontset)
-  props <- font_props(fontset)
+  props <- fontset_props(fontset)
   getter <- props$getter
 
   filter_file <- function(...) {
@@ -61,11 +96,7 @@ font_families <- function(fontset) {
   structure(families, class = "font_families")
 }
 
-#' Font faces for a font family
-#'
-#' @inheritParams font_info
-#' @param family One of \code{"sans"}, \code{"serif"}, \code{"mono"}
-#'   or \code{"symbol"}.
+#' @rdname font_families
 #' @export
 font_faces <- function(fontset, family) {
   families <- font_families(fontset)
@@ -83,10 +114,24 @@ font_regularise_files <- function(files) {
 
 #' Font variants
 #'
-#' @inheritParams font_info
+#' \code{font_variants()} returns a tree of fonts organised as per
+#' fontconfig's nomenclature. The first level contains variants of a
+#' font and the second level contains font styles.
+#'
+#' See also \code{\link{font_families}()} and \code{\link{font_faces}()}
+#' for similar collections organised according to R nomenclature of
+#' fonts. Note that variants and styles are a super set of R families
+#' and faces and may contain more fonts.
+#'
+#' @inheritParams font
+#' @seealso \code{\link{font_families}()}, \code{\link{fonts}()}
 #' @export
+#' @examples
+#' font_variants("Bitstream Vera")
+#' font_variants("Bitstream Vera")$Sans$Oblique
+#' font_styles("Bitstream Vera", "Sans")
 font_variants <- function(fontset) {
-  props <- font_props(fontset)
+  props <- fontset_props(fontset)
   names(props$files) <- str_prettify(names(props$files))
 
   variants <- Map(function(variant, variant_name) {
@@ -98,10 +143,7 @@ font_variants <- function(fontset) {
   structure(variants, class = "font_variants")
 }
 
-#' Font styles for a font variant
-#'
-#' @inheritParams font_info
-#' @param variant Font variant, as per Fontconfig's nomenclature.
+#' @rdname font_variants
 #' @export
 font_styles <- function(fontset, variant) {
   variant <- str_prettify(variant)
