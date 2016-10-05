@@ -24,21 +24,7 @@ font_dejavu <- function(variant = "sans", style = "book", ext = "ttf") {
       "  devtools::install_github('lionel-/fontHeavy')"
     )
   }
-
-  check_font_family(variant, style, font_dejavu_files)
-  check_font_ext(ext)
-
-  base <- font_dejavu_files[[variant]][[style]]
-  file <- font_file("dejavu", base, ext, "fontHeavy")
-  version <- font_version("dejavu", "fontHeavy")
-
-  structure(class = "font", list(
-    file = file,
-    name = "DejaVu",
-    variant = variant,
-    style = style,
-    version = version
-  ))
+  font_get("DejaVu", variant, style, ext, pkg = "fontHeavy")
 }
 
 font_dejavu_files <- font_files(font_dejavu,
@@ -77,3 +63,5 @@ font_dejavu_files <- font_files(font_dejavu,
     regular = font_extra("ttf/DejaVuMathTexGyre", face = "plain", weight = 80)
   )
 )
+
+font_register("DejaVu", font_dejavu, font_dejavu_files)

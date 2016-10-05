@@ -2,6 +2,10 @@
 
 export(font_bitstream_vera)
 export(font_dejavu)
+export(font_families)
+export(font_family)
 export(font_info)
-export(font_info_files)
+export(font_register)
+export(font_variant)
+export(font_variants)
 export(htmlFontDependency)

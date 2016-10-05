@@ -1,4 +1,21 @@
 
+registered_fonts <- new.env(parent = emptyenv())
+
+#' Register a font
+#'
+#' @param fontset Name of the font set.
+#' @param getter Constructor of \code{font_file} objects.
+#' @param files Data structure containing font information.
+#' @export
+font_register <- function(fontset, getter, files) {
+  props <- list(getter = getter, files = files)
+  assign(fontset, props, envir = registered_fonts)
+}
+
+font_props <- function(fontset) {
+  get(fontset, envir = registered_fonts)
+}
+
 font_data <- function(base, family, face, weight) {
   structure(base,
     family = family,
@@ -6,6 +23,29 @@ font_data <- function(base, family, face, weight) {
     weight = weight,
     class = "font_data"
   )
+}
+
+font_get <- function(fontset, variant, style, ext, pkg) {
+  variant <- str_standardise(variant, sep = "-")
+  style <- str_standardise(style, sep = "-")
+
+  props <- font_props(fontset)
+  check_font_family(variant, style, props$files)
+  check_font_ext(ext)
+
+  std_name <- str_standardise(fontset, sep = "-")
+  base <- props$files[[variant]][[style]]
+  file <- font_file(std_name, base, ext, package = pkg)
+  version <- font_version(std_name, package = pkg)
+
+  structure(class = "font_file", list(
+    file = file,
+    fontset = fontset,
+    name = paste(fontset, str_prettify(variant), sep = " "),
+    variant = variant,
+    style = style,
+    version = version
+  ))
 }
 
 font_extra <- function(base, face = NA, weight = NA) {
@@ -37,17 +77,19 @@ str.font_getter <- function(object, ...) {
 }
 
 check_font_family <- function(face, style, files) {
-  faces <- names(files)
-  if (!face %in% faces) {
+  face <- str_standardise(face, sep = "-")
+  style <- str_standardise(style, sep = "-")
+
+  if (!face %in% names(files)) {
     stop(call. = FALSE,
-      "Available faces:\n",
-      paste(faces, collapse = ", ")
+      "Available variants:\n",
+      paste(names(files), collapse = ", ")
     )
   }
 
   if (!style %in% names(files[[face]])) {
     stop(call. = FALSE,
-      "Available styles for face ", face, ":\n",
+      "Available styles for variant ", face, ":\n",
       paste(names(files[[face]]), collapse = ", ")
     )
   }
@@ -101,8 +143,13 @@ fontconfig_to_css_weight <- function(w) {
   if (is.null(x)) y else x
 }
 
-str_standardise <- function(name) {
-  gsub(" ", "-", tolower(name))
+str_standardise <- function(s, sep = "-") {
+  gsub(" ", sep, tolower(s))
+}
+
+str_prettify <- function(s) {
+  s <- strsplit(s, "-|_")[[1]]
+  paste0(toupper(substring(s, 1, 1)), substring(s, 2), collapse=" ")
 }
 
 str_trim_ext <- function(path) {
@@ -151,6 +198,10 @@ spread_attributes <- function(x, id) {
   names(df)[[1]] <- id
 
   df
+}
+
+set_names <- function(x, nm = x) {
+  stats::setNames(x, nm)
 }
 
 # Simple reimplementations to avoid dplyr dependency -----------------

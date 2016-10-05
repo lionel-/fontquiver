@@ -19,20 +19,7 @@ font_bitstream_vera <- function(variant = "sans", style = "roman",
   if (system.file("fonts", package = "fontBitstreamVera") == "") {
     stop("fontBitstreamVera must be installed", call. = FALSE)
   }
-  check_font_family(variant, style, font_bitstream_vera_files)
-  check_font_ext(ext)
-
-  base <- font_bitstream_vera_files[[variant]][[style]]
-  file <- font_file("bitstream-vera", base, ext, package = "fontBitstreamVera")
-  version <- font_version("bitstream-vera", package = "fontBitstreamVera")
-
-  structure(class = "font", list(
-    file = file,
-    name = "Bitstream Vera",
-    variant = variant,
-    style = style,
-    version = version
-  ))
+  font_get("Bitstream Vera", variant, style, ext, pkg = "fontBitstreamVera")
 }
 
 font_bitstream_vera_files <- font_files(font_bitstream_vera,
@@ -43,7 +30,7 @@ font_bitstream_vera_files <- font_files(font_bitstream_vera,
     `bold-oblique` = font_sans("VeraBI", face = "bolditalic", weight = 200)
   ),
   `sans-mono` = list(
-    roman = font_mono("VeraMono", weight = 80),
+    roman = font_mono("VeraMono", face = "plain", weight = 80),
     oblique = font_mono("VeraMoIt", face = "italic", weight = 80),
     bold = font_mono("VeraMoBd", face = "bold", weight = 200),
     `bold-oblique` = font_mono("VeraMoBI", face = "bolditalic", weight = 200)
@@ -53,3 +40,5 @@ font_bitstream_vera_files <- font_files(font_bitstream_vera,
     bold = font_serif("VeraSeBd", face = "bold", weight = 200)
   )
 )
+
+font_register("Bitstream Vera", font_bitstream_vera, font_bitstream_vera_files)

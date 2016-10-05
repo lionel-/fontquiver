@@ -4,11 +4,11 @@
 \alias{font_info}
 \title{Font metadata}
 \usage{
-font_info(font)
+font_info(fontset)
 }
 \arguments{
-\item{font}{A string giving the name of the font
-(e.g. \code{"bitstream_vera"}).}
+\item{fontset}{A string giving the name of a set of fonts
+(e.g. \code{"Bitstream Vera"}).}
 }
 \description{
 This returns a data frame containing metadata about fonts. The
@@ -20,6 +20,6 @@ terms of R nomenclature of fonts. The column "base" gives the base
 filename of the font.
 }
 \seealso{
-\code{\link{font_info_files}()}
+\code{\link{font_families}()}, \code{\link{font_variants}()}
 }
 
