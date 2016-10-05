@@ -48,6 +48,7 @@ font_get <- function(fontset, variant, style, pkg) {
     weight = attr(base, "weight"),
     family = attr(base, "family"),
     face = attr(base, "face"),
+    package = pkg,
     version = version
   ))
 }
@@ -119,20 +120,6 @@ font_file <- function(base, name, ext, package) {
 font_version <- function(font, package) {
   file <- system.file("fonts", paste0(font, "-VERSION"), package = package)
   readChar(file, file.info(file)$size - 1)
-}
-
-# Loosely adapted from
-# https://lists.freedesktop.org/archives/fontconfig/2011-September/003645.html
-fontconfig_to_css_weight <- function(w) {
-  if (w <= 40) return(100)
-  if (w <= 50) return(200)
-  if (w <= 70) return(300)
-  if (w <= 80) return(400)
-  if (w <= 100) return(500)
-  if (w <= 180) return(600)
-  if (w <= 200) return(700)
-  if (w <= 205) return(800)
-  900
 }
 
 # R Utils ------------------------------------------------------------
@@ -242,4 +229,29 @@ filter_first <- function(df, ...) {
   } else {
     filtered
   }
+}
+
+vapply_chr <- function(.x, .f, ...) {
+  vapply(.x, .f, character(1), ...)
+}
+vapply_lgl <- function(.x, .f, ...) {
+  vapply(.x, .f, logical(1), ...)
+}
+lapply_if <- function(.x, .p, .f, ...) {
+  matches <- vapply_lgl(.x, .p)
+  .x[matches] <- lapply(.x[matches], .f, ...)
+  .x
+}
+compact <- function(x) {
+  x <- Filter(Negate(is.null), x)
+  x <- Filter(length, x)
+}
+flatten <- function(.x) {
+  unlist(.x, FALSE, FALSE)
+}
+keep <- function(.x, .p, ...) {
+  .x[vapply_lgl(.x, .p, ...)]
+}
+is_bare_list <- function(.x) {
+  is.list(.x) && !is.object(.x)
 }
