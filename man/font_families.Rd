@@ -29,14 +29,13 @@ files are organised by R nomenclature of families (\code{"sans"},
 Note that the fonts returned by \code{font_faces()} and
 \code{\link{font_families}()} are constrained by R's nomenclature
 of fonts and are thus a subset of those returned by
-\link{\link{font_variants}()} and \code{\link{font_styles}()}.
+\code{\link{font_variants}()} and \code{\link{font_styles}()}.
 }
 \examples{
 font_families("Bitstream Vera")$mono$bold
 font_faces("Bitstream Vera", "mono")
 }
 \seealso{
-\code{\link{font_styles}()}, \code{\link{font_families}()},
-  \code{\link{fonts}()}
+\code{\link{font_variants}()}, \code{\link{fonts}()}
 }
 

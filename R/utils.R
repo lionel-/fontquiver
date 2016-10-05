@@ -86,8 +86,7 @@ font_version <- function(font, package) {
 #'   individual fonts as returned by \code{\link{fonts}()}.
 #' @export
 #' @examples
-#' splice_fonts(font_variants("DejaVu"), font_families("Bitstream Vera"))
-#' splice_fonts(font_variants("DejaVu")$Sans, font_families("Bitstream Vera")$mono)
+#' splice_fonts(font("Bitstream Vera", "Sans", "Oblique"), font_faces("Bitstream Vera", "mono"))
 splice_fonts <- function(...) {
   fonts <- list(...)
 

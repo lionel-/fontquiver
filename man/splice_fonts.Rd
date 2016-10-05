@@ -21,7 +21,6 @@ collections of fonts produced by \code{\link{font_variants}()} or
 the result.
 }
 \examples{
-splice_fonts(font_variants("DejaVu"), font_families("Bitstream Vera"))
-splice_fonts(font_variants("DejaVu")$Sans, font_families("Bitstream Vera")$mono)
+splice_fonts(font("Bitstream Vera", "Sans", "Oblique"), font_faces("Bitstream Vera", "mono"))
 }
 

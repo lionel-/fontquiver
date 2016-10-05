@@ -35,13 +35,12 @@ font <- function(fontset, variant, style) {
 #' Note that the fonts returned by \code{font_faces()} and
 #' \code{\link{font_families}()} are constrained by R's nomenclature
 #' of fonts and are thus a subset of those returned by
-#' \link{\link{font_variants}()} and \code{\link{font_styles}()}.
+#' \code{\link{font_variants}()} and \code{\link{font_styles}()}.
 #' @inheritParams fontset_info
 #' @param family One of \code{"sans"}, \code{"serif"}, \code{"mono"}
 #'   or \code{"symbol"}.
 #' @export
-#' @seealso \code{\link{font_styles}()}, \code{\link{font_families}()},
-#'   \code{\link{fonts}()}
+#' @seealso \code{\link{font_variants}()}, \code{\link{fonts}()}
 #' @examples
 #' font_families("Bitstream Vera")$mono$bold
 #' font_faces("Bitstream Vera", "mono")
