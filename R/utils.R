@@ -7,12 +7,12 @@ registered_fonts <- new.env(parent = emptyenv())
 #' @param getter Constructor of \code{font_file} objects.
 #' @param files Data structure containing font information.
 #' @export
-font_register <- function(fontset, getter, files) {
+fontset_register <- function(fontset, getter, files) {
   props <- list(getter = getter, files = files)
   assign(fontset, props, envir = registered_fonts)
 }
 
-font_props <- function(fontset) {
+fontset_props <- function(fontset) {
   fontset <- str_prettify(fontset)
   get(fontset, envir = registered_fonts)
 }
@@ -30,13 +30,13 @@ font_get <- function(fontset, variant, style, pkg) {
   variant <- str_standardise(variant, sep = "-")
   style <- str_standardise(style, sep = "-")
 
-  props <- font_props(fontset)
+  props <- fontset_props(fontset)
   check_font_family(variant, style, props$files)
 
   std_name <- str_standardise(fontset, sep = "-")
   base <- props$files[[variant]][[style]]
-  ttf <- font_file(std_name, base, "ttf", package = pkg)
-  woff <- font_file(std_name, base, "woff", package = pkg)
+  ttf <- concat_font_file(std_name, base, "ttf", package = pkg)
+  woff <- concat_font_file(std_name, base, "woff", package = pkg)
   version <- font_version(std_name, package = pkg)
   name <- paste(fontset, str_prettify(variant), sep = " ")
   fullname <- paste(name, str_prettify(style), sep = " ")
@@ -97,7 +97,7 @@ check_font_exists <- function(font, package) {
   dir.exists(dir)
 }
 
-font_file <- function(base, name, ext, package) {
+concat_font_file <- function(base, name, ext, package) {
   dir <- paste0(base, "-fonts")
   filename <- paste(name, ext, sep = ".")
   path <- file.path(dir, filename)

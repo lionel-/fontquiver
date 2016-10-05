@@ -39,4 +39,4 @@ font_bitstream_vera_files <- list(
   )
 )
 
-font_register("Bitstream Vera", font_bitstream_vera, font_bitstream_vera_files)
+fontset_register("Bitstream Vera", font_bitstream_vera, font_bitstream_vera_files)

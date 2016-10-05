@@ -64,4 +64,4 @@ font_dejavu_files <- list(
   )
 )
 
-font_register("DejaVu", font_dejavu, font_dejavu_files)
+fontset_register("DejaVu", font_dejavu, font_dejavu_files)
