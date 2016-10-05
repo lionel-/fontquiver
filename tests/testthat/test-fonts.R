@@ -11,11 +11,11 @@ check_font_files <- function(files, font_getter) {
 }
 
 test_that("Bitstream Vera files are found", {
-  check_font_files(font_bitstream_vera_files, font_bitstream_vera)
+  check_font_files(fontset_bitstream_vera_files, fontset_bitstream_vera)
 })
 
 test_that("DejaVu files are found", {
   if (check_font_exists("dejavu", "fontHeavy")) {
-    check_font_files(font_dejavu_files, font_dejavu)
+    check_font_files(fontset_dejavu_files, fontset_dejavu)
   }
 })

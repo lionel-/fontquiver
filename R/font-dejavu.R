@@ -1,22 +1,6 @@
-#' Dejavu fonts
-#'
-#' Available variants (style): \code{sans} (\code{book}, \code{bold},
-#' \code{oblique}, \code{bold-oblique}, \code{extra-light}),
-#' \code{sans-condensed} (\code{book}, \code{bold}, \code{oblique},
-#' \code{bold-oblique}), \code{sans-mono} (\code{book}, \code{bold},
-#' \code{oblique}, \code{bold-oblique}), \code{serif} (\code{book},
-#' \code{bold}, \code{italic}, \code{bold-italic}),
-#' \code{serif-condensed} (\code{book}, \code{bold}, \code{italic},
-#' \code{bold-italic}), \code{math-tex-gyre} (\code{regular}).
-#'
-#' @inheritParams font_bitstream_vera
-#' @return The path to the requested font is provided in the
-#'   \code{file} field. The version number of the font is given in the
-#'   \code{version} field.
 #' @references \url{http://dejavu-fonts.org}
 #' @include utils.R
-#' @export
-font_dejavu <- function(variant = "sans", style = "book") {
+fontset_dejavu <- function(variant = "sans", style = "book") {
   if (system.file("fonts", package = "fontHeavy") == "") {
     stop(call. = FALSE,
       "fontHeavy must be installed from Github. Please run:\n",
@@ -27,7 +11,7 @@ font_dejavu <- function(variant = "sans", style = "book") {
   font_get("DejaVu", variant, style, pkg = "fontHeavy")
 }
 
-font_dejavu_files <- list(
+fontset_dejavu_files <- list(
   sans = list(
     book = font_sans("ttf/DejaVuSans", face = "plain", weight = 80),
     oblique = font_sans("ttf/DejaVuSans-Oblique", face = "italic", weight = 80),
@@ -64,4 +48,7 @@ font_dejavu_files <- list(
   )
 )
 
-fontset_register("DejaVu", font_dejavu, font_dejavu_files)
+fontset_register("DejaVu",
+  getter = fontset_dejavu,
+  files = fontset_dejavu_files
+)

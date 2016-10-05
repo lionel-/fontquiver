@@ -1,6 +1,6 @@
 
 test_that("throw when malformed list is supplied", {
-  fonts <- list(font_bitstream_vera(), mtcars)
+  fonts <- list(fontset_bitstream_vera(), mtcars)
   expect_error(htmlFontDependency(fonts), "can contain only")
 })
 

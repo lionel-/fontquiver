@@ -15,7 +15,7 @@
 #' @export
 font_info <- function(fontset) {
   font <- str_standardise(fontset, sep = "_")
-  files <- font_regularise_files(font)
+  files <- fontset_regularise_files(font)
   info <- at_bottom(files, spread_attributes, "base")
   gather_tree(info, c("variant", "style"))
 }
@@ -104,9 +104,9 @@ font_faces <- function(fontset, family) {
   families[[family]]
 }
 
-font_regularise_files <- function(files) {
+fontset_regularise_files <- function(files) {
   if (is.character(files)) {
-    files <- get(paste0("font_", files, "_files"))
+    files <- get(paste0("fontset_", files, "_files"))
   }
   stopifnot(is.list(files))
   files
