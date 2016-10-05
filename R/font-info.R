@@ -2,18 +2,19 @@
 #'
 #' This returns a data frame containing metadata about fonts. The
 #' columns "variant" and "style" correspond to the properties of the
-#' font as reported by fontconfig. These are suitable as parameters of
-#' a font getter function such as \code{\link{font_bitstream_vera}()}.
-#' The columns "family", "italic" and "bold" provide information in
-#' terms of R nomenclature of fonts. The column "base" gives the base
-#' filename of the font.
+#' font as reported by fontconfig. The columns "family", "italic" and
+#' "bold" provide information in terms of R nomenclature of fonts. The
+#' column "base" gives the base filename of the font. See
+#' \code{\link{fontset_list}()} to obtain a list of available
+#' fontsets.
 #'
 #' @param fontset A string giving the name of a set of fonts
 #'   (e.g. \code{"Bitstream Vera"}). Use \code{\link{fontset_list}()}
 #'   to obtain the list of fontsets registered in your session.
-#' @seealso \code{\link{font_families}()}, \code{\link{font_variants}()}
+#' @seealso \code{\link{fontset_list}()}, \code{\link{font_families}()},
+#' \code{\link{font_variants}()}
 #' @export
-font_info <- function(fontset) {
+fontset_info <- function(fontset) {
   font <- str_standardise(fontset, sep = "_")
   files <- fontset_regularise_files(font)
   info <- at_bottom(files, spread_attributes, "base")
@@ -24,12 +25,12 @@ font_info <- function(fontset) {
 #'
 #' \code{fonts()} returns the list of all \code{font_file} objects for
 #' a given fontset. \code{font()} returns one specific font.
-#' @inheritParams font_info
+#' @inheritParams fontset_info
 #' @param variant Font variant, as per Fontconfig's nomenclature.
 #' @param style Font style, as per Fontconfig's nomenclature.
 #' @export
 fonts <- function(fontset) {
-  info <- font_info(fontset)
+  info <- fontset_info(fontset)
   getter <- fontset_props(fontset)$getter
 
   fonts <- Map(getter, variant = info$variant, style = info$style)
@@ -58,7 +59,7 @@ font <- function(fontset, variant, style) {
 #' \code{\link{font_families}()} are constrained by R's nomenclature
 #' of fonts and are thus a subset of those returned by
 #' \link{\link{font_variants}()} and \code{\link{font_styles}()}.
-#' @inheritParams font_info
+#' @inheritParams fontset_info
 #' @param family One of \code{"sans"}, \code{"serif"}, \code{"mono"}
 #'   or \code{"symbol"}.
 #' @export
@@ -68,7 +69,7 @@ font <- function(fontset, variant, style) {
 #' font_families("Bitstream Vera")$mono$bold
 #' font_faces("Bitstream Vera", "mono")
 font_families <- function(fontset) {
-  info <- font_info(fontset)
+  info <- fontset_info(fontset)
   props <- fontset_props(fontset)
   getter <- props$getter
 
