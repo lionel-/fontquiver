@@ -1,29 +1,4 @@
 
-registered_fonts <- new.env(parent = emptyenv())
-
-#' Register a font to fontquiver
-#'
-#' @param fontset Name of the font set.
-#' @param getter Constructor of \code{font_file} objects.
-#' @param files Data structure containing font information.
-#' @export
-fontset_register <- function(fontset, getter, files) {
-  props <- list(getter = getter, files = files)
-  assign(fontset, props, envir = registered_fonts)
-}
-
-#' Get list of all registered fonts
-#'
-#' @export
-fontset_list <- function() {
-  names(registered_fonts)
-}
-
-fontset_props <- function(fontset) {
-  fontset <- str_prettify(fontset)
-  get(fontset, envir = registered_fonts)
-}
-
 font_data <- function(base, family, face, weight) {
   structure(base,
     family = family,
