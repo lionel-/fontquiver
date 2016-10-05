@@ -20,7 +20,7 @@ font_bitstream_vera <- function(variant = "sans", style = "roman") {
   font_get("Bitstream Vera", variant, style, pkg = "fontBitstreamVera")
 }
 
-font_bitstream_vera_files <- font_files(font_bitstream_vera,
+font_bitstream_vera_files <- list(
   sans = list(
     roman = font_sans("Vera", face = "plain", weight = 80),
     oblique = font_sans("VeraIt", face = "italic", weight = 80),

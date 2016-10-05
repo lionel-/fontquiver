@@ -27,7 +27,7 @@ font_dejavu <- function(variant = "sans", style = "book") {
   font_get("DejaVu", variant, style, pkg = "fontHeavy")
 }
 
-font_dejavu_files <- font_files(font_dejavu,
+font_dejavu_files <- list(
   sans = list(
     book = font_sans("ttf/DejaVuSans", face = "plain", weight = 80),
     oblique = font_sans("ttf/DejaVuSans-Oblique", face = "italic", weight = 80),

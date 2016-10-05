@@ -73,18 +73,6 @@ font_mono <- function(base, face = NA, weight = NA) {
   font_data(base = base, family = "mono", face = face, weight = weight)
 }
 
-font_files <- function(getter, ...) {
-  getter <- structure(getter, class = "font_getter")
-  structure(list(...), getter = getter)
-}
-
-print.font_getter <- function(x, ...) {
-  cat("fontgetter\n")
-}
-str.font_getter <- function(object, ...) {
-  cat(" fontgetter\n")
-}
-
 check_font_family <- function(face, style, files) {
   face <- str_standardise(face, sep = "-")
   style <- str_standardise(style, sep = "-")
