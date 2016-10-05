@@ -13,6 +13,7 @@ font_register <- function(fontset, getter, files) {
 }
 
 font_props <- function(fontset) {
+  fontset <- str_prettify(fontset)
   get(fontset, envir = registered_fonts)
 }
 
@@ -132,9 +133,11 @@ str_standardise <- function(s, sep = "-") {
   gsub(" ", sep, tolower(s))
 }
 
-str_prettify <- function(s) {
-  s <- strsplit(s, "-|_")[[1]]
-  paste0(toupper(substring(s, 1, 1)), substring(s, 2), collapse=" ")
+str_prettify <- function(str) {
+  vapply_chr(str, function(s) {
+    s <- strsplit(s, "-|_| ")[[1]]
+    paste0(toupper(substring(s, 1, 1)), substring(s, 2), collapse=" ")
+  })
 }
 
 str_trim_ext <- function(path) {
@@ -243,8 +246,7 @@ lapply_if <- function(.x, .p, .f, ...) {
   .x
 }
 compact <- function(x) {
-  x <- Filter(Negate(is.null), x)
-  x <- Filter(length, x)
+  Filter(length, x)
 }
 flatten <- function(.x) {
   unlist(.x, FALSE, FALSE)

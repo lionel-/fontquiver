@@ -87,10 +87,10 @@ font_regularise_files <- function(files) {
 #' @export
 font_variants <- function(fontset) {
   props <- font_props(fontset)
-  variants <- names(props$files)
+  names(props$files) <- str_prettify(names(props$files))
 
   variants <- Map(function(variant, variant_name) {
-    styles <- set_names(names(variant))
+    styles <- set_names(str_prettify(names(variant)))
     styles <- lapply(styles, props$getter, variant = variant_name)
     structure(styles, class = "font_styles")
   }, props$files, names(props$files))
@@ -104,7 +104,7 @@ font_variants <- function(fontset) {
 #' @param variant Font variant, as per Fontconfig's nomenclature.
 #' @export
 font_styles <- function(fontset, variant) {
-  variant <- str_standardise(variant, sep = "-")
+  variant <- str_prettify(variant)
   variants <- font_variants(fontset)
   variants[[variant]]
 }
