@@ -15,20 +15,10 @@
 #' \code{\link{font_variants}()}
 #' @export
 fontset_info <- function(fontset) {
-  fontset <- str_standardise(fontset, sep = "_")
-  files <- fontset_regularise_files(fontset)
-  info <- at_bottom(files, spread_attributes, "base")
+  props <- fontset_props(fontset)
+  info <- at_bottom(props$files, spread_attributes, "base")
   gather_tree(info, c("variant", "style"))
 }
-
-fontset_regularise_files <- function(files) {
-  if (is.character(files)) {
-    files <- get(paste0("fontset_", files, "_files"))
-  }
-  stopifnot(is.list(files))
-  files
-}
-
 
 registered_fontsets <- new.env(parent = emptyenv())
 
