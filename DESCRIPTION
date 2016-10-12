@@ -8,7 +8,8 @@ Description: Provides a set of fonts with permissive licences. This is
 Depends:
     R (>= 3.3.0)
 Imports:
-    fontBitstreamVera (>= 0.1.0)
+    fontBitstreamVera (>= 0.1.0),
+    fontLiberation
 Suggests:
     testthat,
     htmltools
@@ -21,5 +22,8 @@ Collate:
     'fontset.R'
     'fontset-bitstream-vera.R'
     'fontset-dejavu.R'
+    'fontset-liberation.R'
     'html-dependency.R'
     'utils.R'
+Remotes:
+    lionel-/fontLiberation
