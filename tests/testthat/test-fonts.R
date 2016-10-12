@@ -23,3 +23,7 @@ test_that("DejaVu files are found", {
 test_that("Liberation files are found", {
   check_font_files(fontset_liberation_files, fontset_liberation)
 })
+
+test_that("Symbola file is found", {
+  check_font_files(fontset_symbola_files, fontset_symbola)
+})

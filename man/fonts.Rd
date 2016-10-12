@@ -3,11 +3,14 @@
 \name{fonts}
 \alias{font}
 \alias{fonts}
-\title{Return all fonts for of a fontset}
+\alias{symbol_font}
+\title{Get elements of a fontset}
 \usage{
 fonts(fontset)
 
 font(fontset, variant, style)
+
+symbol_font(fontset = "Symbola")
 }
 \arguments{
 \item{fontset}{A string giving the name of a set of fonts
@@ -21,5 +24,6 @@ to obtain the list of fontsets registered in your session.}
 \description{
 \code{fonts()} returns the list of all \code{font_file} objects for
 a given fontset. \code{font()} returns one specific font.
+\code{symbol_font()} extracts the font marked as symbol font.
 }
 

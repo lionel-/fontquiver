@@ -1,7 +1,8 @@
-#' Return all fonts for of a fontset
+#' Get elements of a fontset
 #'
 #' \code{fonts()} returns the list of all \code{font_file} objects for
 #' a given fontset. \code{font()} returns one specific font.
+#' \code{symbol_font()} extracts the font marked as symbol font.
 #' @inheritParams fontset_info
 #' @param variant Font variant, as per Fontconfig's nomenclature.
 #' @param style Font style, as per Fontconfig's nomenclature.
@@ -21,6 +22,13 @@ fonts <- function(fontset) {
 #' @export
 font <- function(fontset, variant, style) {
   fontset_props(fontset)$getter(variant, style)
+}
+
+#' @rdname fonts
+#' @export
+symbol_font <- function(fontset = "Symbola") {
+  families <- font_families(fontset)
+  families$symbol$symbol
 }
 
 #' Font families and faces
