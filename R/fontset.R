@@ -57,22 +57,22 @@ font_data <- function(base, family, face, weight) {
   )
 }
 
-font_extra <- function(base, face = NA, weight = NA) {
+other <- function(base, face = NA, weight = NA) {
   font_data(base, family = NA, face = face, weight = weight)
 }
 
-font_sans <- function(base, face = NA, weight = NA) {
+sans <- function(base, face = NA, weight = NA) {
   font_data(base = base, family = "sans", face = face, weight = weight)
 }
 
-font_serif <- function(base, face = NA, weight = NA) {
+serif <- function(base, face = NA, weight = NA) {
   font_data(base = base, family = "serif", face = face, weight = weight)
 }
 
-font_mono <- function(base, face = NA, weight = NA) {
+mono <- function(base, face = NA, weight = NA) {
   font_data(base = base, family = "mono", face = face, weight = weight)
 }
 
-font_symbol <- function(base, face = NA, weight = NA) {
+symbol <- function(base, face = NA, weight = NA) {
   font_data(base = base, family = "symbol", face = face, weight = weight)
 }

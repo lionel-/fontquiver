@@ -9,20 +9,20 @@ fontset_bitstream_vera <- function(variant = "sans", style = "roman") {
 
 fontset_bitstream_vera_files <- list(
   sans = list(
-    roman = font_sans("Vera", face = "plain", weight = 80),
-    oblique = font_sans("VeraIt", face = "italic", weight = 80),
-    bold = font_sans("VeraBd", face = "bold", weight = 200),
-    `bold-oblique` = font_sans("VeraBI", face = "bolditalic", weight = 200)
+    roman = sans("Vera", face = "plain", weight = 80),
+    oblique = sans("VeraIt", face = "italic", weight = 80),
+    bold = sans("VeraBd", face = "bold", weight = 200),
+    `bold-oblique` = sans("VeraBI", face = "bolditalic", weight = 200)
   ),
   `sans-mono` = list(
-    roman = font_mono("VeraMono", face = "plain", weight = 80),
-    oblique = font_mono("VeraMoIt", face = "italic", weight = 80),
-    bold = font_mono("VeraMoBd", face = "bold", weight = 200),
-    `bold-oblique` = font_mono("VeraMoBI", face = "bolditalic", weight = 200)
+    roman = mono("VeraMono", face = "plain", weight = 80),
+    oblique = mono("VeraMoIt", face = "italic", weight = 80),
+    bold = mono("VeraMoBd", face = "bold", weight = 200),
+    `bold-oblique` = mono("VeraMoBI", face = "bolditalic", weight = 200)
   ),
   serif = list(
-    roman = font_serif("VeraSe", face = "plain", weight = 80),
-    bold = font_serif("VeraSeBd", face = "bold", weight = 200)
+    roman = serif("VeraSe", face = "plain", weight = 80),
+    bold = serif("VeraSeBd", face = "bold", weight = 200)
   )
 )
 

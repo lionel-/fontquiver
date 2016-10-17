@@ -2,15 +2,15 @@
 % Please edit documentation in R/font-getters.R
 \name{fonts}
 \alias{font}
+\alias{font_symbol}
 \alias{fonts}
-\alias{symbol_font}
 \title{Get elements of a fontset}
 \usage{
 fonts(fontset)
 
 font(fontset, variant, style)
 
-symbol_font(fontset = "Symbola")
+font_symbol(fontset = "Symbola")
 }
 \arguments{
 \item{fontset}{A string giving the name of a set of fonts
@@ -24,6 +24,14 @@ to obtain the list of fontsets registered in your session.}
 \description{
 \code{fonts()} returns the list of all \code{font_file} objects for
 a given fontset. \code{font()} returns one specific font.
-\code{symbol_font()} extracts the font marked as symbol font.
+\code{font_symbol()} extracts the font marked as symbol font.
+}
+\examples{
+font("Bitstream Vera", "Sans", "Roman")
+
+f <- fonts("Liberation")
+str(f, 1)
+
+font_symbol("Symbola")
 }
 

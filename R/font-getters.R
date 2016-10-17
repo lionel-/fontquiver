@@ -2,11 +2,18 @@
 #'
 #' \code{fonts()} returns the list of all \code{font_file} objects for
 #' a given fontset. \code{font()} returns one specific font.
-#' \code{symbol_font()} extracts the font marked as symbol font.
+#' \code{font_symbol()} extracts the font marked as symbol font.
 #' @inheritParams fontset_info
 #' @param variant Font variant, as per Fontconfig's nomenclature.
 #' @param style Font style, as per Fontconfig's nomenclature.
 #' @export
+#' @examples
+#' font("Bitstream Vera", "Sans", "Roman")
+#'
+#' f <- fonts("Liberation")
+#' str(f, 1)
+#'
+#' font_symbol("Symbola")
 fonts <- function(fontset) {
   info <- fontset_info(fontset)
   getter <- fontset_props(fontset)$getter
@@ -26,7 +33,7 @@ font <- function(fontset, variant, style) {
 
 #' @rdname fonts
 #' @export
-symbol_font <- function(fontset = "Symbola") {
+font_symbol <- function(fontset = "Symbola") {
   families <- font_families(fontset)
   families$symbol$symbol
 }

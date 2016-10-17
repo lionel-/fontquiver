@@ -9,7 +9,7 @@ fontset_symbola <- function(variant = "symbols", style = "regular") {
 
 fontset_symbola_files <- list(
   symbols = list(
-    regular = font_symbol("Symbola", face = "symbol", weight = 80)
+    regular = symbol("Symbola", face = "symbol", weight = 80)
   )
 )
 

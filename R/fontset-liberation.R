@@ -9,22 +9,22 @@ fontset_liberation <- function(variant = "sans", style = "regular") {
 
 fontset_liberation_files <- list(
   sans = list(
-    regular = font_sans("LiberationSans-Regular", face = "plain", weight = 80),
-    italic = font_sans("LiberationSans-Italic", face = "italic", weight = 80),
-    bold = font_sans("LiberationSans-Bold", face = "bold", weight = 200),
-    `bold-italic` = font_sans("LiberationSans-BoldItalic", face = "bolditalic", weight = 200)
+    regular = sans("LiberationSans-Regular", face = "plain", weight = 80),
+    italic = sans("LiberationSans-Italic", face = "italic", weight = 80),
+    bold = sans("LiberationSans-Bold", face = "bold", weight = 200),
+    `bold-italic` = sans("LiberationSans-BoldItalic", face = "bolditalic", weight = 200)
   ),
   `mono` = list(
-    regular = font_mono("LiberationMono-Regular", face = "plain", weight = 80),
-    oblique = font_mono("LiberationMono-Italic", face = "italic", weight = 80),
-    bold = font_mono("LiberationMono-Bold", face = "bold", weight = 200),
-    `bold-italic` = font_mono("LiberationMono-BoldItalic", face = "bolditalic", weight = 200)
+    regular = mono("LiberationMono-Regular", face = "plain", weight = 80),
+    oblique = mono("LiberationMono-Italic", face = "italic", weight = 80),
+    bold = mono("LiberationMono-Bold", face = "bold", weight = 200),
+    `bold-italic` = mono("LiberationMono-BoldItalic", face = "bolditalic", weight = 200)
   ),
   serif = list(
-    regular = font_serif("LiberationSerif-Regular", face = "plain", weight = 80),
-    italic = font_serif("LiberationSerif-Italic", face = "italic", weight = 80),
-    bold = font_serif("LiberationSerif-Bold", face = "bold", weight = 200),
-    `bold-italic` = font_serif("LiberationSerif-BoldItalic", face = "bolditalic", weight = 200)
+    regular = serif("LiberationSerif-Regular", face = "plain", weight = 80),
+    italic = serif("LiberationSerif-Italic", face = "italic", weight = 80),
+    bold = serif("LiberationSerif-Bold", face = "bold", weight = 200),
+    `bold-italic` = serif("LiberationSerif-BoldItalic", face = "bolditalic", weight = 200)
   )
 )
 
