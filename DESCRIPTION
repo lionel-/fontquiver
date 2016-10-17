@@ -12,7 +12,7 @@ Depends:
     R (>= 3.3.0)
 Imports:
     fontBitstreamVera (>= 0.1.0),
-    fontLiberation
+    fontLiberation (>= 0.1.0)
 Suggests:
     testthat,
     htmltools
@@ -29,5 +29,3 @@ Collate:
     'fontset-symbola.R'
     'html-dependency.R'
     'utils.R'
-Remotes:
-    lionel-/fontLiberation
