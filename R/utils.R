@@ -8,13 +8,13 @@ font_get <- function(fontset, variant, style, pkg) {
 
   std_name <- str_standardise(fontset, sep = "-")
   base <- props$files[[variant]][[style]]
-  ttf <- concat_font_file(std_name, base, "ttf", package = pkg)
-  woff <- concat_font_file(std_name, base, "woff", package = pkg)
+  ttf <- concat_font(std_name, base, "ttf", package = pkg)
+  woff <- concat_font(std_name, base, "woff", package = pkg)
   version <- font_version(std_name, package = pkg)
   name <- paste(fontset, str_prettify(variant), sep = " ")
   fullname <- paste(name, str_prettify(style), sep = " ")
 
-  structure(class = "font_file", list(
+  structure(class = "font", list(
     ttf = ttf,
     woff = woff,
     fontset = fontset,
@@ -53,7 +53,7 @@ check_font_exists <- function(font, package) {
   dir.exists(dir)
 }
 
-concat_font_file <- function(base, name, ext, package) {
+concat_font <- function(base, name, ext, package) {
   dir <- paste0(base, "-fonts")
   filename <- paste(name, ext, sep = ".")
   path <- file.path(dir, filename)
@@ -73,11 +73,11 @@ font_version <- function(font, package) {
 #' Splice fonts and font collections
 #'
 #' \code{splice_fonts()} Reduces its arguments to a flat list. It
-#' accepts indinstinctly \code{font_file} objects, lists of
-#' \code{font_file} objects (obtained with \code{\link{fonts}()}), or
-#' collections of fonts produced by \code{\link{font_variants}()} or
-#' \code{\link{font_families}()}. Duplicate fonts are removed from
-#' the result.
+#' accepts indinstinctly \code{font} objects, lists of \code{font}
+#' objects (obtained with \code{\link{fonts}()}), or collections of
+#' fonts produced by \code{\link{font_variants}()} or
+#' \code{\link{font_families}()}. Duplicate fonts are removed from the
+#' result.
 #'
 #' @param ... Fonts or collections of fonts. See
 #'   \code{\link{font_families}()} and \code{\link{font_variants}()}
@@ -91,7 +91,7 @@ splice_fonts <- function(...) {
 
   known_classes <- c(
     "font_families", "font_variants","font_faces",
-    "font_styles", "font_file", "list"
+    "font_styles", "font", "list"
   )
   unknown <- setdiff(vapply_chr(fonts, class), known_classes)
   if (length(unknown)) {
@@ -100,15 +100,15 @@ splice_fonts <- function(...) {
 
   meta <- keep(fonts, inherits, c("font_families", "font_variants"))
   coll <- keep(fonts, inherits, c("font_faces", "font_styles"))
-  file <- keep(fonts, inherits, "font_file")
+  file <- keep(fonts, inherits, "font")
   list <- keep(fonts, is_bare_list)
 
   meta <- flatten(lapply(meta, flatten))
   coll <- flatten(coll)
   list <- flatten(list)
 
-  if (!all(vapply_lgl(list, inherits, "font_file"))) {
-    stop("Lists can contain only `font_file` objects", call. = FALSE)
+  if (!all(vapply_lgl(list, inherits, "font"))) {
+    stop("Lists can contain only `font` objects", call. = FALSE)
   }
 
   fonts <- compact(c(meta, coll, file, list))

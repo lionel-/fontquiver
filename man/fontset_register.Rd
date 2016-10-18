@@ -9,7 +9,7 @@ fontset_register(fontset, getter, files)
 \arguments{
 \item{fontset}{Name of the font set.}
 
-\item{getter}{Constructor of \code{font_file} objects.}
+\item{getter}{Constructor of \code{font} objects.}
 
 \item{files}{Data structure containing font information.}
 }

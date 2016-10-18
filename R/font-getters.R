@@ -1,7 +1,7 @@
 #' Get elements of a fontset
 #'
-#' \code{fonts()} returns the list of all \code{font_file} objects for
-#' a given fontset (a collection of fonts provided by fontquiver, such
+#' \code{fonts()} returns the list of all \code{font} objects for a
+#' given fontset (a collection of fonts provided by fontquiver, such
 #' as \code{Liberation} or \code{Bitstream Vera}). \code{font()}
 #' returns one specific font. \code{font_symbol()} extracts the font
 #' marked as symbol font, if it exists in the fontset.

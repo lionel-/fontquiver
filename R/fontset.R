@@ -48,7 +48,7 @@ registered_fontsets <- new.env(parent = emptyenv())
 #' Register a font to fontquiver
 #'
 #' @param fontset Name of the font set.
-#' @param getter Constructor of \code{font_file} objects.
+#' @param getter Constructor of \code{font} objects.
 #' @param files Data structure containing font information.
 #' @export
 fontset_register <- function(fontset, getter, files) {

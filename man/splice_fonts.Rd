@@ -14,11 +14,11 @@ individual fonts as returned by \code{\link{fonts}()}.}
 }
 \description{
 \code{splice_fonts()} Reduces its arguments to a flat list. It
-accepts indinstinctly \code{font_file} objects, lists of
-\code{font_file} objects (obtained with \code{\link{fonts}()}), or
-collections of fonts produced by \code{\link{font_variants}()} or
-\code{\link{font_families}()}. Duplicate fonts are removed from
-the result.
+accepts indinstinctly \code{font} objects, lists of \code{font}
+objects (obtained with \code{\link{fonts}()}), or collections of
+fonts produced by \code{\link{font_variants}()} or
+\code{\link{font_families}()}. Duplicate fonts are removed from the
+result.
 }
 \examples{
 splice_fonts(font("Bitstream Vera", "Sans", "Oblique"), font_faces("Bitstream Vera", "mono"))
