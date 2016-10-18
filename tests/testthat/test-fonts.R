@@ -15,7 +15,7 @@ test_that("Bitstream Vera files are found", {
 })
 
 test_that("DejaVu files are found", {
-  if (check_font_exists("dejavu", "fontHeavy")) {
+  if (check_font_exists("dejavu", "fontDejaVu")) {
     check_font_files(fontset_dejavu_files, fontset_dejavu)
   }
 })

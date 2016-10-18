@@ -1,14 +1,14 @@
 #' @references \url{http://dejavu-fonts.org}
 #' @include fontset.R
 fontset_dejavu <- function(variant = "sans", style = "book") {
-  if (system.file("fonts", package = "fontHeavy") == "") {
+  if (system.file("fonts", package = "fontDejaVu") == "") {
     stop(call. = FALSE,
-      "fontHeavy must be installed from Github. Please run:\n",
+      "fontDejaVu must be installed from Github. Please run:\n",
       "  install.packages('devtools')\n",
-      "  devtools::install_github('lionel-/fontHeavy')"
+      "  devtools::install_github('lionel-/fontDejaVu')"
     )
   }
-  font_get("DejaVu", variant, style, pkg = "fontHeavy")
+  font_get("DejaVu", variant, style, pkg = "fontDejaVu")
 }
 
 fontset_dejavu_files <- list(
