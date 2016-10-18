@@ -23,8 +23,10 @@ to obtain the list of fontsets registered in your session.}
 }
 \description{
 \code{fonts()} returns the list of all \code{font_file} objects for
-a given fontset. \code{font()} returns one specific font.
-\code{font_symbol()} extracts the font marked as symbol font.
+a given fontset (a collection of fonts provided by fontquiver, such
+as \code{Liberation} or \code{Bitstream Vera}). \code{font()}
+returns one specific font. \code{font_symbol()} extracts the font
+marked as symbol font, if it exists in the fontset.
 }
 \examples{
 font("Bitstream Vera", "Sans", "Roman")
