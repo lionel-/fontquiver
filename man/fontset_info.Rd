@@ -2,14 +2,15 @@
 % Please edit documentation in R/fontset.R
 \name{fontset_info}
 \alias{fontset_info}
-\title{Font metadata}
+\title{Fontset metadata}
 \usage{
 fontset_info(fontset)
 }
 \arguments{
 \item{fontset}{A string giving the name of a set of fonts
-(e.g. \code{"Bitstream Vera"}). Use \code{\link{fontset_list}()}
-to obtain the list of fontsets registered in your session.}
+(e.g. \code{"Liberation"} or\code{"Bitstream Vera"}). Use
+\code{\link{fontset_list}()} to obtain the list of fontsets
+registered in your session.}
 }
 \description{
 This returns a data frame containing metadata about fonts. The

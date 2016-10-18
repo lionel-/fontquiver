@@ -14,12 +14,17 @@ font_symbol(fontset = "Symbola")
 }
 \arguments{
 \item{fontset}{A string giving the name of a set of fonts
-(e.g. \code{"Bitstream Vera"}). Use \code{\link{fontset_list}()}
-to obtain the list of fontsets registered in your session.}
+(e.g. \code{"Liberation"} or\code{"Bitstream Vera"}). Use
+\code{\link{fontset_list}()} to obtain the list of fontsets
+registered in your session.}
 
-\item{variant}{Font variant, as per Fontconfig's nomenclature.}
+\item{variant}{Font variant, as per Fontconfig's nomenclature. Use
+\code{\link{fontset_variants}()} to find out which variants are
+available for a fontset.}
 
-\item{style}{Font style, as per Fontconfig's nomenclature.}
+\item{style}{Font style, as per Fontconfig's nomenclature. Use
+\code{\link{fontset_styles}()} to find out which variants are
+available for a fontset.}
 }
 \description{
 \code{fonts()} returns the list of all \code{font_file} objects for

@@ -11,8 +11,9 @@ font_faces(fontset, family = c("sans", "serif", "mono", "symbol"))
 }
 \arguments{
 \item{fontset}{A string giving the name of a set of fonts
-(e.g. \code{"Bitstream Vera"}). Use \code{\link{fontset_list}()}
-to obtain the list of fontsets registered in your session.}
+(e.g. \code{"Liberation"} or\code{"Bitstream Vera"}). Use
+\code{\link{fontset_list}()} to obtain the list of fontsets
+registered in your session.}
 
 \item{family}{One of \code{"sans"}, \code{"serif"}, \code{"mono"}
 or \code{"symbol"}.}

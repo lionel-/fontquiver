@@ -230,7 +230,7 @@ filter_first <- function(df, ...) {
 }
 
 vapply_chr <- function(.x, .f, ...) {
-  vapply(.x, .f, character(1), ...)
+  vapply(.x, .f, character(1), ..., USE.NAMES = FALSE)
 }
 vapply_lgl <- function(.x, .f, ...) {
   vapply(.x, .f, logical(1), ...)

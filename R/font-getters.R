@@ -6,8 +6,12 @@
 #' returns one specific font. \code{font_symbol()} extracts the font
 #' marked as symbol font, if it exists in the fontset.
 #' @inheritParams fontset_info
-#' @param variant Font variant, as per Fontconfig's nomenclature.
-#' @param style Font style, as per Fontconfig's nomenclature.
+#' @param variant Font variant, as per Fontconfig's nomenclature. Use
+#'   \code{\link{fontset_variants}()} to find out which variants are
+#'   available for a fontset.
+#' @param style Font style, as per Fontconfig's nomenclature. Use
+#'   \code{\link{fontset_styles}()} to find out which variants are
+#'   available for a fontset.
 #' @export
 #' @examples
 #' font("Bitstream Vera", "Sans", "Roman")

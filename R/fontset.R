@@ -1,4 +1,4 @@
-#' Font metadata
+#' Fontset metadata
 #'
 #' This returns a data frame containing metadata about fonts. The
 #' columns "variant" and "style" correspond to the properties of the
@@ -9,8 +9,9 @@
 #' fontsets.
 #'
 #' @param fontset A string giving the name of a set of fonts
-#'   (e.g. \code{"Bitstream Vera"}). Use \code{\link{fontset_list}()}
-#'   to obtain the list of fontsets registered in your session.
+#'   (e.g. \code{"Liberation"} or\code{"Bitstream Vera"}). Use
+#'   \code{\link{fontset_list}()} to obtain the list of fontsets
+#'   registered in your session.
 #' @seealso \code{\link{fontset_list}()}, \code{\link{font_families}()},
 #' \code{\link{font_variants}()}
 #' @export
@@ -18,6 +19,28 @@ fontset_info <- function(fontset) {
   props <- fontset_props(fontset)
   info <- at_bottom(props$files, spread_attributes, "base")
   gather_tree(info, c("variant", "style"))
+}
+
+#' Fontset variants and styles
+#'
+#' These functions return the variants and the styles available for a
+#' given fontset.
+#' @inheritParams fonts
+#' @export
+#' @examples
+#' fontset_variants("Liberation")
+#' fontset_styles("Bitstream Vera", "Sans Mono")
+fontset_variants <- function(fontset) {
+  props <- fontset_props(fontset)
+  str_prettify(names(props$files))
+}
+
+#' @rdname fontset_variants
+#' @export
+fontset_styles <- function(fontset, variant) {
+  props <- fontset_props(fontset)
+  variant <- str_standardise(variant)
+  str_prettify(names(props$files[[variant]]))
 }
 
 registered_fontsets <- new.env(parent = emptyenv())
