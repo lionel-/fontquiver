@@ -37,15 +37,14 @@ check_font_family <- function(face, style, files) {
   if (!face %in% names(files)) {
     stop(call. = FALSE,
       "Available variants:\n",
-      paste(names(files), collapse = ", ")
+      paste(str_prettify(names(files)), collapse = ", ")
     )
   }
 
   if (!style %in% names(files[[face]])) {
-    stop(call. = FALSE,
-      "Available styles for variant ", face, ":\n",
-      paste(names(files[[face]]), collapse = ", ")
-    )
+    styles <- names(files[[face]])
+    styles <- paste(str_prettify(styles), collapse = ", ")
+    stop(call. = FALSE, "Available styles for variant ", face, ":\n", styles)
   }
 }
 
