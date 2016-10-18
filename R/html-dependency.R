@@ -27,7 +27,7 @@ htmlFontDependency <- function(...) {
   writeLines(css, css_file, useBytes = TRUE)
 
   lapply(fonts, function(font) {
-    file.copy(font$ttf, file.path(css_dir, basename(font$ttf)))
+    file.copy(font$woff, file.path(css_dir, basename(font$woff)))
   })
 
   pkgs <- unique(vapply_chr(fonts, `[[`, "package"))
@@ -74,8 +74,7 @@ css_font_face <- function(name, file, style, weight) {
     sprintf("  font-style: %s;", style),
     sprintf("  font-weight: %s;", weight),
     "  src:",
-    "    url('%s.woff') format('woff'),",
-    "    url('%s.ttf')  format('truetype');",
+    "    url('%s.woff') format('woff');",
     "}\n"
   ))
 }
