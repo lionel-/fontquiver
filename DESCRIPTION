@@ -1,6 +1,6 @@
 Package: fontquiver
 Title: Set of Installed Fonts
-Version: 0.1.0.9000
+Version: 0.1.0.9001
 Authors@R: c(
     person("Lionel", "Henry", , "lionel@rstudio.com", c("cre", "aut")),
     person("RStudio", role = "cph"),

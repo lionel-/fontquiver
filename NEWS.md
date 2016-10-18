@@ -18,6 +18,9 @@
 - `htmlFontDependency()` now takes fonts and collections of fonts (as
   returned by `font_families()` and friends) as argument.
 
+- `htmlFontDependency()` now uses the style-linking idiom for
+  generating CSS.
+
 # fontquiver 0.1.0
 
 Initial release
