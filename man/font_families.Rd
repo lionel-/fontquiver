@@ -7,7 +7,7 @@
 \usage{
 font_families(fontset)
 
-font_faces(fontset, family)
+font_faces(fontset, family = c("sans", "serif", "mono", "symbol"))
 }
 \arguments{
 \item{fontset}{A string giving the name of a set of fonts
