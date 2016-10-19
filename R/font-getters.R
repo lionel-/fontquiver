@@ -97,9 +97,9 @@ font_families <- function(fontset) {
 #' @rdname font_families
 #' @export
 font_faces <- function(fontset, family = c("sans", "serif", "mono", "symbol")) {
-  family <- match.arg(family)
+  choices <- c("sans", "serif", "mono", "symbol")
+  family <- match.arg(str_standardise(family), choices)
   families <- font_families(fontset)
-  family <- str_standardise(family, sep = "")
   families[[family]]
 }
 
