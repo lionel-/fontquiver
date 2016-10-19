@@ -1,18 +1,31 @@
 Package: fontquiver
 Title: Set of Installed Fonts
-Version: 0.1.0.9000
-Authors@R: person("Lionel", "Henry", , "lionel.hry@gmail.com", c("cre", "aut"))
+Version: 0.1.0.9001
+Authors@R: c(
+    person("Lionel", "Henry", , "lionel@rstudio.com", c("cre", "aut")),
+    person("RStudio", role = "cph"),
+    person("George Douros", role = "cph"))
 Description: Provides a set of fonts with permissive licences. This is
     useful when you want to avoid system fonts to make sure your
     outputs are reproducible.
 Depends:
     R (>= 3.3.0)
 Imports:
-    fontBitstreamVera (>= 0.1.0)
+    fontBitstreamVera (>= 0.1.0),
+    fontLiberation (>= 0.1.0)
 Suggests:
     testthat,
     htmltools
-License: GPL-3
+License: GPL-3 | file LICENSE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 5.0.1
+Collate:
+    'font-getters.R'
+    'fontset.R'
+    'fontset-bitstream-vera.R'
+    'fontset-dejavu.R'
+    'fontset-liberation.R'
+    'fontset-symbola.R'
+    'html-dependency.R'
+    'utils.R'

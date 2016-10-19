@@ -1,66 +1,80 @@
 #' Include font as CSS dependency
 #'
-#' @inheritParams font_bitstream_vera
-#' @param font_getter A fontquiver getter function such as
-#'   \code{font_bitstream_vera}.
+#' @inheritParams splice_fonts
 #' @export
 #' @examples
 #' # Create an htmlDependency object:
-#' dep <- htmlFontDependency(variant = "serif")
+#' dep <- htmlFontDependency(font_families("Bitstream Vera"))
 #'
-#' # Check the name of the embedded font
-#' dep$name
-#'
-#' # Use that name in your dependent css or html files. For example:
+#' # Use the fonts in your dependent css or html files. For example:
 #' # body {
-#' #  font-family: fontquiver-bitstream-vera-sans-roman, sans-serif;
+#' #  font-family: 'Bitstream Vera Sans Mono', courier;
 #' # }
-htmlFontDependency <- function(font_getter = font_bitstream_vera,
-                               variant = NULL, style = NULL) {
+htmlFontDependency <- function(...) {
   if (!requireNamespace("htmltools")) {
     stop("htmltools is not installed", call. = FALSE)
   }
+  fonts <- unique(splice_fonts(...))
 
-  variant <- variant %||% formals(font_getter)$variant
-  style <- style %||% formals(font_getter)$style
-  font <- font_getter(variant, style, "ttf")
-  name <- str_standardise(font$name)
-  id <- paste("fontquiver", name, variant, style, sep = "-")
-
-  base_file <- str_trim_ext(basename(font$file))
   css_dir <- file.path(tempdir(), "fontquiver")
-  if (!dir.exists(css_dir)) {
-    dir.create(css_dir)
-  }
+  if (!dir.exists(css_dir)) dir.create(css_dir)
+  css_file <- tempfile("fontquiver-dep", css_dir, fileext = ".css")
 
-  css <- css_font_face(id, base_file)
-  css_file <- tempfile(id, css_dir, fileext = ".css")
+  css <- lapply(fonts, function(font) {
+    css_font_face(font$name, font$ttf, font$face, font$weight)
+  })
+  css <- flatten(css)
   writeLines(css, css_file, useBytes = TRUE)
 
-  base_path <- str_trim_ext(font$file)
-  lapply(c("ttf", "woff"), function(ext) {
-    from <- paste(base_path, ext, sep = ".")
-    to <- file.path(css_dir, paste(base_file, ext, sep = "."))
-    file.copy(from, to)
+  lapply(fonts, function(font) {
+    file.copy(font$woff, file.path(css_dir, basename(font$woff)))
   })
 
+  pkgs <- unique(vapply_chr(fonts, `[[`, "package"))
+  vers <- unique(vapply_chr(fonts, `[[`, "version"))
+
   htmltools::htmlDependency(
-    name = id,
-    version = font$version,
+    name = paste(pkgs, collapse = "-"),
+    version = paste(vers, collapse = "-"),
     src = css_dir,
     stylesheet = basename(css_file)
   )
 }
 
+css_font_style <- function(face) {
+  switch(face,
+    italic = "italic",
+    bolditalic = "italic",
+    "normal"
+  )
+}
+
+# Loosely adapted from
+# https://lists.freedesktop.org/archives/fontconfig/2011-September/003645.html
+css_font_weight <- function(w) {
+  if (w <= 40) return(100)
+  if (w <= 50) return(200)
+  if (w <= 70) return(300)
+  if (w <= 80) return(400)
+  if (w <= 100) return(500)
+  if (w <= 180) return(600)
+  if (w <= 200) return(700)
+  if (w <= 205) return(800)
+  900
+}
+
 # https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face
-css_font_face <- function(id, file) {
+css_font_face <- function(name, file, style, weight) {
+  file <- str_trim_ext(basename(file))
+  style <- css_font_style(style)
+  weight <- css_font_weight(weight)
   gsub("%s", file, c(
     "@font-face {",
-    sprintf("  font-family: '%s';", id),
-    "  src: ",
-    "    url('%s.woff') format('woff'),                    /* Modern Browsers */",
-    "    url('%s.ttf')  format('truetype')                 /* Safari, Android, iOS */",
-    " ;",
-    "}"
+    sprintf("  font-family: '%s';", name),
+    sprintf("  font-style: %s;", style),
+    sprintf("  font-weight: %s;", weight),
+    "  src:",
+    "    url('%s.woff') format('woff');",
+    "}\n"
   ))
 }

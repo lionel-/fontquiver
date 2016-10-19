@@ -1,7 +1,7 @@
 
-context("Font Files")
+context("Fontset Files")
 
-check_font_files <- function(files, font_getter) {
+check_fontset_files <- function(files, font_getter) {
   Map(function(styles, variant) {
     fonts <- lapply(names(styles), font_getter, variant = variant)
     not_found <- fonts == ""
@@ -11,11 +11,19 @@ check_font_files <- function(files, font_getter) {
 }
 
 test_that("Bitstream Vera files are found", {
-  check_font_files(font_bitstream_vera_files, font_bitstream_vera)
+  check_fontset_files(fontset_bitstream_vera_files, fontset_bitstream_vera)
 })
 
 test_that("DejaVu files are found", {
-  if (check_font_exists("dejavu", "fontHeavy")) {
-    check_font_files(font_dejavu_files, font_dejavu)
+  if (check_font_exists("dejavu", "fontDejaVu")) {
+    check_fontset_files(fontset_dejavu_files, fontset_dejavu)
   }
+})
+
+test_that("Liberation files are found", {
+  check_fontset_files(fontset_liberation_files, fontset_liberation)
+})
+
+test_that("Symbola file is found", {
+  check_fontset_files(fontset_symbola_files, fontset_symbola)
 })

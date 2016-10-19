@@ -4,30 +4,24 @@
 \alias{htmlFontDependency}
 \title{Include font as CSS dependency}
 \usage{
-htmlFontDependency(font_getter = font_bitstream_vera, variant = NULL,
-  style = NULL)
+htmlFontDependency(...)
 }
 \arguments{
-\item{font_getter}{A fontquiver getter function such as
-\code{font_bitstream_vera}.}
-
-\item{variant}{Variant of the font, e.g. \code{"sans"} or \code{"serif"}.}
-
-\item{style}{Style of the font, e.g. \code{"roman"} or \code{"bold"}.}
+\item{...}{Fonts or collections of fonts. See
+\code{\link{font_families}()} and \code{\link{font_variants}()}
+for creating collections of fonts. You can also supply lists of
+individual fonts as returned by \code{\link{fonts}()}.}
 }
 \description{
 Include font as CSS dependency
 }
 \examples{
 # Create an htmlDependency object:
-dep <- htmlFontDependency(variant = "serif")
+dep <- htmlFontDependency(font_families("Bitstream Vera"))
 
-# Check the name of the embedded font
-dep$name
-
-# Use that name in your dependent css or html files. For example:
+# Use the fonts in your dependent css or html files. For example:
 # body {
-#  font-family: fontquiver-bitstream-vera-sans-roman, sans-serif;
+#  font-family: 'Bitstream Vera Sans Mono', courier;
 # }
 }
 
