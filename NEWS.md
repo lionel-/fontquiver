@@ -1,5 +1,5 @@
 
-# fontquiver 0.1.0.9000
+# fontquiver 0.2.0
 
 - Add Liberation and Symbola fonts
 

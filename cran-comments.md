@@ -1,7 +1,3 @@
-## Resubmission
-
-The package has been split so that it is covered by only one licence
-
 ## Test environments
 * local OS X install, R 3.3.1
 * ubuntu 12.04 (on travis-ci), R 3.3.1
@@ -11,10 +7,14 @@ The package has been split so that it is covered by only one licence
 
 0 errors | 0 warnings | 1 note
 
-* This is a new release.
+Notes:
+
+* Changed maintainer email
+* Concern about fontLiberation's licence but if I'm not mistaken it is
+  FOSS and should pose no problem.
 
 ## Reverse dependencies
 
-This is a new release, so there are no reverse dependencies.
+There are no reverse dependencies yet.
 
 ---
