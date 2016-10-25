@@ -10,8 +10,9 @@
 Notes:
 
 * Changed maintainer email
-* Concern about fontLiberation's licence but if I'm not mistaken it is
-  FOSS and should pose no problem.
+* Concern about fontLiberation's licence but the FSF considers the SIL
+  Open Font Licence is copyleft:
+  https://www.gnu.org/licenses/license-list.en.html
 
 ## Reverse dependencies
 

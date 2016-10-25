@@ -17,9 +17,9 @@ devtools::install_github("lionel-/fontquiver")
 
 ## Usage
 
-### Fonts installed in the R library
+### Fonts installed in R packages
 
-fontquiver is an interface to fonts installed in the R library. It
+fontquiver is an interface to fonts installed as R packages. It
 provides convenient and structured access, for instance, to the
 Bitstream Vera font family installed with the
 [fontBitstreamVera](https://cran.r-project.org/package=fontBitstreamVera)
@@ -27,10 +27,12 @@ package, or the Liberation family that comes with
 [fontLiberation](https://cran.r-project.org/package=fontLiberation).
 The fonts too heavy to be distributed on CRAN can be accessed by
 fontquiver through Github-only packages such as
-[fontDejaVu](https://github.com/lionel-/fontDejaVu). These collections
-of font are referred to as `fontset` in fontquiver. Call
-`fontset_list()` to check which fontsets are currently installed in
-your library.
+[fontDejaVu](https://github.com/lionel-/fontDejaVu). Each package
+bundles a set of fonts (or `fontset` as they are called in fontquiver)
+which typically includes bold and italic faces for sans and serif
+fonts, but may also include more exotic variations (condensed, ultra
+light, etc). Call `fontset_list()` to check which fontsets are
+currently installed on your computer.
 
 Fonts installed in the R library can be useful for a variety of
 purposes. They can be used in web applications with the
@@ -46,7 +48,7 @@ fonts used to compute text metrics.
 
 The standard categories of fonts in R are the `sans`, `serif`, and
 `mono` families and the `plain`, `italic`, `bold`, and `bolditalic`
-faces.However, font nomenclatures are extremely rich and go well
+faces. However, font nomenclatures are extremely rich and go well
 beyond those 12 categories. For example the DéjàVu set contains a font
 whose variant and style are `Serif Condensed` and `Extra Light`. For
 this reason, fontquiver uses the categories provided by the font util
