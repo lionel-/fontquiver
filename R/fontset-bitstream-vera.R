@@ -1,9 +1,7 @@
 #' @references \url{https://www.gnome.org/fonts/}
+#' @import fontBitstreamVera
 #' @include fontset.R
 fontset_bitstream_vera <- function(variant = "sans", style = "roman") {
-  if (system.file("fonts", package = "fontBitstreamVera") == "") {
-    stop("fontBitstreamVera must be installed", call. = FALSE)
-  }
   font_get("Bitstream Vera", variant, style, pkg = "fontBitstreamVera")
 }
 

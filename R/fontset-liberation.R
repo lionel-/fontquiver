@@ -1,9 +1,7 @@
 #' @references \url{https://fedorahosted.org/liberation-fonts/}
+#' @import fontLiberation
 #' @include fontset.R
 fontset_liberation <- function(variant = "sans", style = "regular") {
-  if (system.file("fonts", package = "fontLiberation") == "") {
-    stop("fontLiberation must be installed", call. = FALSE)
-  }
   font_get("Liberation", variant, style, pkg = "fontLiberation")
 }
 
