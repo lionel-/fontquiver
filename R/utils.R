@@ -173,7 +173,7 @@ spread_attributes <- function(x, id) {
   stopifnot(is.atomic(x))
 
   attrs <- attributes(unclass(x))
-  stopifnot(all(lengths(attrs) == length(x)))
+  stopifnot(all(vapply_int(attrs, length) == length(x)))
 
   attrs <- as.data.frame(attrs, stringsAsFactors = FALSE)
   df <- cbind(unclass(x), attrs, stringsAsFactors = FALSE)
@@ -228,11 +228,18 @@ filter_first <- function(df, ...) {
   }
 }
 
+vapply_ <- function(.x, .f, .mold, ...) {
+  out <- vapply(.x, .f, .mold, ..., USE.NAMES = FALSE)
+  stats::setNames(out, names(.x))
+}
 vapply_chr <- function(.x, .f, ...) {
-  vapply(.x, .f, character(1), ..., USE.NAMES = FALSE)
+  vapply_(.x, .f, character(1), ...)
 }
 vapply_lgl <- function(.x, .f, ...) {
-  vapply(.x, .f, logical(1), ...)
+  vapply_(.x, .f, logical(1), ...)
+}
+vapply_int <- function(.x, .f, ...) {
+  vapply_(.x, .f, integer(1), ...)
 }
 lapply_if <- function(.x, .p, .f, ...) {
   matches <- vapply_lgl(.x, .p)
@@ -250,4 +257,18 @@ keep <- function(.x, .p, ...) {
 }
 is_bare_list <- function(.x) {
   is.list(.x) && !is.object(.x)
+}
+
+
+# R 3.2.0 compat
+dir.exists <- function(paths) {
+  if (utils::packageVersion("base") >= "3.2.0") {
+    (baseenv()$dir.exists)(paths)
+  } else {
+    vapply_lgl(paths, dir_exists)
+  }
+}
+
+dir_exists <- function(path) {
+  !identical(path, "") && file.exists(paste0(path, .Platform$file.sep))
 }
