@@ -1,4 +1,9 @@
 
+# fontquiver 0.2.1
+
+- Set minimum R version to 3.0.0.
+
+
 # fontquiver 0.2.0
 
 - Add Liberation and Symbola fonts
@@ -20,6 +25,7 @@
 
 - `htmlFontDependency()` now uses the style-linking idiom for
   generating CSS.
+
 
 # fontquiver 0.1.0
 
