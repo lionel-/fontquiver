@@ -1,3 +1,7 @@
+# fontquiver 0.2.x (unreleased)
+
+- Fix warnings in non-UTF-8 MBCS locale (#9, @yutannihilation).
+
 
 # fontquiver 0.2.1
 

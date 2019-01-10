@@ -67,7 +67,7 @@ concat_font <- function(base, name, ext, package) {
 
 font_version <- function(font, package) {
   file <- system.file("fonts", paste0(font, "-VERSION"), package = package)
-  readChar(file, file.info(file)$size - 1)
+  readChar(file, file.info(file)$size - 1, useBytes = TRUE)
 }
 
 #' Splice fonts and font collections
